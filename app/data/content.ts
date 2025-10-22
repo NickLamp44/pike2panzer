@@ -1,0 +1,712 @@
+export interface Commander {
+  name: string;
+  role: string;
+  side: string;
+}
+
+export interface WeaponTechnology {
+  name: string;
+  description: string;
+  significance: string;
+}
+
+export interface Theater {
+  slug: string;
+  title: string;
+  imageUrl: string;
+  description: string;
+  commanders: Commander[];
+  weaponsTechnology: WeaponTechnology[];
+  article: string; // Full article content or path to markdown file
+}
+
+export interface Conflict {
+  slug: string;
+  title: string;
+  imageUrl: string;
+  description: string;
+  hasTheaters: boolean;
+  theaters?: Theater[];
+  commanders?: Commander[]; // For conflicts without theaters
+  weaponsTechnology?: WeaponTechnology[];
+  article?: string; // For conflicts without theaters
+}
+
+export interface Era {
+  slug: string;
+  title: string;
+  imageUrl: string;
+  description: string;
+  conflicts: Conflict[];
+}
+
+export const eras: Era[] = [
+  // late medieval
+  {
+    slug: "late-medieval",
+    title: "Late Medieval",
+    imageUrl: "/eras/late-medieval/hero.jpg",
+    description:
+      "The final centuries of medieval warfare, marked by the decline of feudalism and the rise of professional armies.",
+    conflicts: [
+      // Mongol Invasions
+      {
+        slug: "mongol-invasions-japan",
+        title: "Mongol Invasions of Japan",
+        imageUrl: "/eras/late-medieval/mongol-invasions/hero.jpg",
+        description:
+          'The Mongol invasions of Japan were two major military campaigns launched by Kublai Khan, the Mongol ruler and founder of the Yuan Dynasty in China, aiming to conquer Japan and expand Mongol influence eastward. The invasions occurred in 1274 (Bun’ei Campaign) and 1281 (Kōan Campaign). Despite numerical superiority, the Mongols were repelled by Japanese samurai defenders, strategic fortifications, and severe weather, most famously typhoons known as “kamikaze” (divine winds). These invasions were significant for shaping Japanese military culture, fortification strategies, and national identity.".',
+        hasTheaters: false,
+        commanders: [
+          {
+            name: "Kublai Khan",
+            role: "Mongol Emperor",
+            side: "Mongol Empire",
+          },
+          {
+            name: "Hōjō Tokimune",
+            role: "Regent of Japan",
+            side: "Japan",
+          },
+        ],
+        weaponsTechnology: [
+          {
+            name: "Mongol Composite Bow",
+            description: "Powerful recurve bow used by Mongol cavalry",
+            significance:
+              "Superior range and penetration compared to Japanese bows",
+          },
+          {
+            name: "Japanese Katana",
+            description: "Curved single-edged sword of the samurai",
+            significance: "Effective in close combat against Mongol forces",
+          },
+        ],
+        article: `
+# Mongol Invasions of Japan (1274 & 1281)
+
+## Overview
+The Mongol invasions of Japan were two major military campaigns launched by Kublai Khan's Yuan dynasty...
+
+## First Invasion (1274)
+In November 1274, a Mongol fleet of approximately 900 ships carrying 23,000 troops...
+
+## Second Invasion (1281)
+The second and larger invasion attempt came in 1281...
+
+## The Divine Wind
+Both invasions were ultimately thwarted by powerful typhoons that the Japanese called "kamikaze" (divine wind)...
+        `,
+      },
+
+      //100 yr war
+      {
+        slug: "hundred-years-war",
+        title: "Hundred Years War",
+        imageUrl: "/eras/late-medieval/100-years-war/hero.jpg",
+        description:
+          "A series of conflicts between England and France lasting from 1337 to 1453.",
+        hasTheaters: false,
+        commanders: [
+          {
+            name: "Edward III",
+            role: "King of England",
+            side: "England",
+          },
+          {
+            name: "Joan of Arc",
+            role: "Military Leader",
+            side: "France",
+          },
+        ],
+        weaponsTechnology: [
+          {
+            name: "English Longbow",
+            description: "Powerful longbow that could pierce armor at range",
+            significance: "Decisive weapon at battles like Crécy and Agincourt",
+          },
+          {
+            name: "Plate Armor",
+            description: "Full body armor made of metal plates",
+            significance: "Provided superior protection but was expensive",
+          },
+        ],
+        article: "Full article content here...",
+      },
+
+      //war of roses
+      {
+        slug: "war-of-roses",
+        title: "War of the Roses",
+        imageUrl: "/eras/late-medieval/war-of-roses/hero.jpg",
+        description:
+          "English civil war between the Houses of Lancaster and York for the throne.",
+        hasTheaters: false,
+        commanders: [
+          {
+            name: "Richard III",
+            role: "King of England",
+            side: "House of York",
+          },
+          {
+            name: "Henry Tudor",
+            role: "Earl of Richmond",
+            side: "House of Lancaster",
+          },
+        ],
+        weaponsTechnology: [
+          {
+            name: "Poleaxe",
+            description: "Versatile pole weapon effective against armor",
+            significance: "Popular weapon among knights in close combat",
+          },
+        ],
+        article: "Full article content here...",
+      },
+    ],
+  },
+
+  //rise of gun powder
+  {
+    slug: "rise-of-gunpowder",
+    title: "Rise of Gunpowder",
+    imageUrl: "/eras/rise-of-gun-powder/hero.jpg",
+    description:
+      "The revolutionary period when gunpowder weapons transformed warfare forever.",
+    conflicts: [
+      //anglo spanish
+      {
+        slug: "anglo-spanish-war",
+        title: "Anglo-Spanish War",
+        imageUrl: "/eras/rise-of-gun-powder/anglo-spanish/hero.jpg",
+        description:
+          "Conflict between England and Spain, featuring the famous Spanish Armada.",
+        hasTheaters: false,
+        commanders: [
+          {
+            name: "Queen Elizabeth I",
+            role: "Queen of England",
+            side: "England",
+          },
+          {
+            name: "King Philip II",
+            role: "King of Spain",
+            side: "Spain",
+          },
+        ],
+        weaponsTechnology: [
+          {
+            name: "Galleon",
+            description: "Large multi-decked sailing ship",
+            significance: "Dominant warship design of the era",
+          },
+          {
+            name: "Naval Cannon",
+            description: "Ship-mounted artillery",
+            significance: "Revolutionized naval warfare",
+          },
+        ],
+        article: "Full article content here...",
+      },
+
+      //ming manchu
+      {
+        slug: "ming-manchu-conflict",
+        title: "Ming-Manchu Conflict",
+        imageUrl: "/eras/rise-of-gun-powder/ming-manchu/hero.jpg",
+        description:
+          "The fall of the Ming Dynasty and rise of the Qing Dynasty.",
+        hasTheaters: false,
+        commanders: [],
+        weaponsTechnology: [],
+        article: "Full article content here...",
+      },
+
+      //30yr war
+      {
+        slug: "thirty-years-war",
+        title: "Thirty Years War",
+        imageUrl: "/eras/rise-of-gun-powder/30-year-war/hero.jpg",
+        description:
+          "Devastating European conflict primarily fought in Central Europe.",
+        hasTheaters: false,
+        commanders: [],
+        weaponsTechnology: [],
+        article: "Full article content here...",
+      },
+    ],
+  },
+
+  // revolution & imperial Wars
+  {
+    slug: "revolutionary-imperial-wars",
+    title: "Revolutionary & Imperial Wars",
+    imageUrl: "/eras/revolutionary-imperial/hero.jpg",
+    description:
+      "An age of revolution and empire-building that reshaped the world.",
+    conflicts: [
+      // seven years war
+      {
+        slug: "seven-years-war",
+        title: "Seven Years War",
+        imageUrl: "/eras/revolutionary-imperial/7-years-war/hero.webp",
+        description: "Global conflict involving most European great powers.",
+        hasTheaters: false,
+        commanders: [],
+        weaponsTechnology: [],
+        article: "Full article content here...",
+      },
+
+      // american Revolution
+      {
+        slug: "american-revolution",
+        title: "American Revolution",
+        imageUrl: "/eras/revolutionary-imperial/american-revolution/hero.jpg",
+        description:
+          "Colonial revolt that established the United States of America.",
+        hasTheaters: false,
+        commanders: [],
+        weaponsTechnology: [],
+        article: "Full article content here...",
+      },
+      // french revolution
+      {
+        slug: "french-revolution",
+        title: "French Revolution",
+        imageUrl: "/eras/revolutionary-imperial/french-revolution/hero.jpg",
+        description:
+          "Period of radical social and political upheaval in France.",
+        hasTheaters: false,
+        commanders: [],
+        weaponsTechnology: [],
+        article: "Full article content here...",
+      },
+
+      //napoleonic wars
+      {
+        slug: "napoleonic-wars",
+        title: "Napoleonic Wars",
+        imageUrl: "/eras/revolutionary-imperial/napoleonic-wars/hero.jpg",
+        description:
+          "Series of conflicts involving Napoleon Bonaparte and his empire.",
+        hasTheaters: false,
+        commanders: [],
+        weaponsTechnology: [],
+        article: "Full article content here...",
+      },
+    ],
+  },
+
+  //industrial warfare
+  {
+    slug: "dawn-industrial-warfare",
+    title: "Dawn of Industrial Warfare",
+    imageUrl: "/eras/industrial-warfare/hero.jpg",
+    description:
+      "The Industrial Revolution brings mechanized warfare and mass armies.",
+    conflicts: [
+      //american civil war
+      {
+        slug: "american-civil-war",
+        title: "American Civil War",
+        imageUrl: "/eras/industrial-warfare/american-civil-war/hero.jpg",
+        description:
+          "Devastating conflict between Union and Confederate forces.",
+        hasTheaters: false,
+        commanders: [],
+        weaponsTechnology: [],
+        article: "Full article content here...",
+      },
+
+      //austro prussian war
+      {
+        slug: "austro-prussian-war",
+        title: "Austro-Prussian War",
+        imageUrl: "/eras/industrial-warfare/austro-prussian/hero.jpg",
+        description:
+          "Brief but decisive conflict that reshaped Central Europe.",
+        hasTheaters: false,
+        commanders: [],
+        weaponsTechnology: [],
+        article: "Full article content here...",
+      },
+
+      //franco prussian war
+      {
+        slug: "franco-prussian-war",
+        title: "Franco-Prussian War",
+        imageUrl: "/eras/industrial-warfare/franco-prussian/hero.jpg",
+        description: "War that led to German unification and French defeat.",
+        hasTheaters: false,
+        commanders: [],
+        weaponsTechnology: [],
+        article: "Full article content here...",
+      },
+    ],
+  },
+
+  // total war
+  {
+    slug: "total-war",
+    title: "Total War",
+    imageUrl: "/eras/total-war/hero.jpg",
+    description:
+      "The world wars that mobilized entire nations and changed history forever.",
+    conflicts: [
+      // first world war
+      {
+        slug: "first-world-war",
+        title: "The Great War",
+        imageUrl: "/eras/total-war/ww1/hero.jpg",
+        description:
+          "Global conflict from 1939-1945 involving most of the world's nations.",
+        hasTheaters: true,
+        theaters: [
+          // eastern front
+          {
+            slug: "eastern-front",
+            title: "Eastern Front",
+            imageUrl: "/eras/total-war/ww1/eastern-front/hero.jpg",
+            description:
+              "Massive theater of war between Nazi Germany and the Soviet Union.",
+            commanders: [
+              {
+                name: "Joseph Stalin",
+                role: "Soviet Leader",
+                side: "Soviet Union",
+              },
+              {
+                name: "Adolf Hitler",
+                role: "Führer",
+                side: "Nazi Germany",
+              },
+              {
+                name: "Georgy Zhukov",
+                role: "Marshal",
+                side: "Soviet Union",
+              },
+            ],
+            weaponsTechnology: [
+              {
+                name: "T-34 Tank",
+                description: "Soviet medium tank with sloped armor",
+                significance:
+                  "Most produced tank of WWII, highly effective design",
+              },
+              {
+                name: "Katyusha Rocket Launcher",
+                description: "Multiple rocket launcher system",
+                significance: "Devastating area bombardment weapon",
+              },
+            ],
+            article: "Full article about Eastern Front...",
+          },
+
+          // western front
+          {
+            slug: "western-front",
+            title: "Western Front",
+            imageUrl: "/eras/total-war/ww1/western-front/hero.jpg",
+            description:
+              "Allied campaign in Western Europe from D-Day to VE Day.",
+            commanders: [
+              {
+                name: "Dwight D. Eisenhower",
+                role: "Supreme Allied Commander",
+                side: "Allies",
+              },
+              {
+                name: "Bernard Montgomery",
+                role: "Field Marshal",
+                side: "British Empire",
+              },
+            ],
+            weaponsTechnology: [
+              {
+                name: "M4 Sherman Tank",
+                description: "American medium tank",
+                significance: "Reliable and mass-produced Allied tank",
+              },
+            ],
+            article: "Full article about Western Front...",
+          },
+
+          //gallipoli
+          {
+            slug: "gallipoli",
+            title: "Gallipoli",
+            imageUrl: "/eras/total-war/ww1/gallipoli/hero.jpg",
+            description:
+              "Naval and island warfare between Allied forces and Japan.",
+            commanders: [
+              {
+                name: "Douglas MacArthur",
+                role: "General",
+                side: "United States",
+              },
+              {
+                name: "Chester Nimitz",
+                role: "Admiral",
+                side: "United States",
+              },
+            ],
+            weaponsTechnology: [
+              {
+                name: "Aircraft Carrier",
+                description: "Mobile airbase at sea",
+                significance: "Dominant naval weapon of the Pacific War",
+              },
+            ],
+            article: "Full article about Pacific Theater...",
+          },
+
+          //middle east
+          {
+            slug: "middle-east",
+            title: "Middle East & The Arab Revolt",
+            imageUrl: "/eras/total-war/ww1/middle-east/hero.jpg",
+            description:
+              "Campaigns in North Africa, Italy, and the Mediterranean Sea.",
+            commanders: [],
+            weaponsTechnology: [],
+            article: "Full article about Mediterranean Theater...",
+          },
+
+          //war at sea
+          {
+            slug: "war-at-sea",
+            title: "War at Sea",
+            imageUrl: "/eras/total-war/ww1/war-at-sea/hero.jpg",
+            description: "Longest continuous military campaign of WWII.",
+            commanders: [],
+            weaponsTechnology: [],
+            article: "Full article about Battle of the Atlantic...",
+          },
+
+          //irish war
+          {
+            slug: "irish-war",
+            title: "Irish War for Independance",
+            imageUrl: "/eras/total-war/ww1/irish-war/hero.jpg",
+            description: "Desert warfare between Axis and Allied forces.",
+            commanders: [],
+            weaponsTechnology: [],
+            article: "Full article about North Africa...",
+          },
+        ],
+      },
+
+      // second World war
+      {
+        slug: "second-world-war",
+        title: "Second World War",
+        imageUrl: "/eras/total-war/ww2/hero.jpg",
+        description:
+          "Global conflict from 1939-1945 involving most of the world's nations.",
+        hasTheaters: true,
+        theaters: [
+          {
+            slug: "eastern-front",
+            title: "Eastern Front",
+            imageUrl: "/eras/total-war/ww2/eastern-front/hero.jpg",
+            description:
+              "Massive theater of war between Nazi Germany and the Soviet Union.",
+            commanders: [
+              {
+                name: "Joseph Stalin",
+                role: "Soviet Leader",
+                side: "Soviet Union",
+              },
+              {
+                name: "Adolf Hitler",
+                role: "Führer",
+                side: "Nazi Germany",
+              },
+              {
+                name: "Georgy Zhukov",
+                role: "Marshal",
+                side: "Soviet Union",
+              },
+            ],
+            weaponsTechnology: [
+              {
+                name: "T-34 Tank",
+                description: "Soviet medium tank with sloped armor",
+                significance:
+                  "Most produced tank of WWII, highly effective design",
+              },
+              {
+                name: "Katyusha Rocket Launcher",
+                description: "Multiple rocket launcher system",
+                significance: "Devastating area bombardment weapon",
+              },
+            ],
+            article: "Full article about Eastern Front...",
+          },
+          {
+            slug: "western-front",
+            title: "Western Front",
+            imageUrl: "/eras/total-war/ww2/western-front/hero.jpg",
+            description:
+              "Allied campaign in Western Europe from D-Day to VE Day.",
+            commanders: [
+              {
+                name: "Dwight D. Eisenhower",
+                role: "Supreme Allied Commander",
+                side: "Allies",
+              },
+              {
+                name: "Bernard Montgomery",
+                role: "Field Marshal",
+                side: "British Empire",
+              },
+            ],
+            weaponsTechnology: [
+              {
+                name: "M4 Sherman Tank",
+                description: "American medium tank",
+                significance: "Reliable and mass-produced Allied tank",
+              },
+            ],
+            article: "Full article about Western Front...",
+          },
+          {
+            slug: "pacific",
+            title: "Pacific Theater",
+            imageUrl: "/eras/total-war/ww2/pacific/hero.jpg",
+            description:
+              "Naval and island warfare between Allied forces and Japan.",
+            commanders: [
+              {
+                name: "Douglas MacArthur",
+                role: "General",
+                side: "United States",
+              },
+              {
+                name: "Chester Nimitz",
+                role: "Admiral",
+                side: "United States",
+              },
+            ],
+            weaponsTechnology: [
+              {
+                name: "Aircraft Carrier",
+                description: "Mobile airbase at sea",
+                significance: "Dominant naval weapon of the Pacific War",
+              },
+            ],
+            article: "Full article about Pacific Theater...",
+          },
+          {
+            slug: "italian-campaign",
+            title: "Italian Campaign",
+            imageUrl: "/eras/total-war/ww2/italy/hero.jpg",
+            description:
+              "Campaigns in North Africa, Italy, and the Mediterranean Sea.",
+            commanders: [],
+            weaponsTechnology: [],
+            article: "Full article about Mediterranean Theater...",
+          },
+          {
+            slug: "africa",
+            title: "North Africa Campaign",
+            imageUrl: "/eras/total-war/ww2/africa/hero.jpg",
+            description: "Desert warfare between Axis and Allied forces.",
+            commanders: [],
+            weaponsTechnology: [],
+            article: "Full article about North Africa...",
+          },
+          {
+            slug: "atlantic",
+            title: "Battle of the Atlantic",
+            imageUrl: "/eras/total-war/ww2/war-of-the-atlantic/hero.jpg",
+            description: "Longest continuous military campaign of WWII.",
+            commanders: [],
+            weaponsTechnology: [],
+            article: "Full article about Battle of the Atlantic...",
+          },
+        ],
+      },
+    ],
+  },
+
+  //cold war
+  {
+    slug: "cold-war",
+    title: "Cold War",
+    imageUrl: "/eras/cold-war/hero.jpg",
+    description: "Cold War conflicts and modern warfare in the nuclear age.",
+    conflicts: [
+      //korean war
+      {
+        slug: "korean-war",
+        title: "Korean War",
+        imageUrl: "/eras/cold-war/korean-war/hero.jpg",
+        description: "Conflict between North and South Korea from 1950-1953.",
+        hasTheaters: false,
+        commanders: [],
+        weaponsTechnology: [],
+        article: "Full article content here...",
+      },
+
+      //vietnam war
+      {
+        slug: "vietnam-war",
+        title: "Vietnam War",
+        imageUrl: "/eras/cold-war/vietnam-war/hero.jpg",
+        description:
+          "Prolonged conflict in Southeast Asia involving the United States.",
+        hasTheaters: false,
+        commanders: [],
+        weaponsTechnology: [],
+        article: "Full article content here...",
+      },
+
+      //gulf wars
+      {
+        slug: "gulf-wars",
+        title: "Gulf Wars",
+        imageUrl: "/eras/cold-war/gulf-wars/hero.jpg",
+        description:
+          "Modern conflicts in the Middle East involving coalition forces.",
+        hasTheaters: false,
+        commanders: [],
+        weaponsTechnology: [],
+        article: "Full article content here...",
+      },
+      {
+        slug: "falklands-war",
+        title: "Falklands War",
+        imageUrl: "/eras/cold-war/falklands-war/hero.jpg",
+        description:
+          "Modern conflicts in the Middle East involving coalition forces.",
+        hasTheaters: false,
+        commanders: [],
+        weaponsTechnology: [],
+        article: "Full article content here...",
+      },
+    ],
+  },
+];
+
+// Helper functions to retrieve data
+export function getEraBySlug(slug: string): Era | undefined {
+  return eras.find((era) => era.slug === slug);
+}
+
+export function getConflictBySlug(
+  eraSlug: string,
+  conflictSlug: string
+): Conflict | undefined {
+  const era = getEraBySlug(eraSlug);
+  return era?.conflicts.find((conflict) => conflict.slug === conflictSlug);
+}
+
+export function getTheaterBySlug(
+  eraSlug: string,
+  conflictSlug: string,
+  theaterSlug: string
+): Theater | undefined {
+  const conflict = getConflictBySlug(eraSlug, conflictSlug);
+  return conflict?.theaters?.find((theater) => theater.slug === theaterSlug);
+}
