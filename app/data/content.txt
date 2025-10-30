@@ -1,11 +1,61 @@
+export interface Side {
+  name: string;
+  imageURL: string;
+  description?: string;
+  significance?: string;
+  participants?: Participant[];
+}
+
+// units, divisions or armies 
+export interface Participant {
+  name: string;
+  imageURL: string;
+}
+
 export interface Commander {
   name: string;
   role: string;
   side: string;
+  dateOfBirth: string; 
+  dateOfDeath: string; 
+  bio: string; 
+  imageUrl: strin
+  awards?: Award[];
+  majorBattles?: MajorBattle[];
+}
+export interface Award {
+  name: string;
+  description: string;
+  imageURL?: string;
+  significance?: string;
+}
+
+export interface MajorBattle {
+  name: string;
+
+  description: string;
+  sides: Side[];
+  participants?: Participant[];
+  significance: string;
 }
 
 export interface WeaponTechnology {
   name: string;
+  imageURL: string;
+  description: string;
+  significance: string;
+}
+
+export interface Tactic {
+  side: string;
+  imageURL?: string;
+  description: string;
+  significance: string;
+}
+
+export interface Strategy {
+  side: string;
+  imageURL?: string;
   description: string;
   significance: string;
 }
@@ -16,8 +66,10 @@ export interface Theater {
   imageUrl: string;
   description: string;
   commanders: Commander[];
+  strategies: Strategy[];
+  tactics: Tactic[];
   weaponsTechnology: WeaponTechnology[];
-  article: string; // Full article content or path to markdown file
+  article: string;
 }
 
 export interface Conflict {
@@ -27,9 +79,12 @@ export interface Conflict {
   description: string;
   hasTheaters: boolean;
   theaters?: Theater[];
-  commanders?: Commander[]; // For conflicts without theaters
-  weaponsTechnology?: WeaponTechnology[];
-  article?: string; // For conflicts without theaters
+  sides: Side[];
+  commanders: Commander[];
+  weaponsTechnology: WeaponTechnology[];
+  strategies: Strategy[];
+  tactics: Tactic[];
+  article: string;
 }
 
 export interface Era {
@@ -55,13 +110,52 @@ export const eras: Era[] = [
         title: "Mongol Invasions of Japan",
         imageUrl: "/eras/late-medieval/mongol-invasions/hero.jpg",
         description:
-          'The Mongol invasions of Japan were two major military campaigns launched by Kublai Khan, the Mongol ruler and founder of the Yuan Dynasty in China, aiming to conquer Japan and expand Mongol influence eastward. The invasions occurred in 1274 (Bun’ei Campaign) and 1281 (Kōan Campaign). Despite numerical superiority, the Mongols were repelled by Japanese samurai defenders, strategic fortifications, and severe weather, most famously typhoons known as “kamikaze” (divine winds). These invasions were significant for shaping Japanese military culture, fortification strategies, and national identity.".',
+          'The Mongol invasions of Japan were two major military campaigns launched by Kublai Khan, the Mongol ruler and founder of the Yuan Dynasty in China, aiming to conquer Japan and expand Mongol influence eastward. The invasions occurred in 1274 (Bun’ei Campaign) and 1281 (Kōan Campaign). Despite numerical superiority, the Mongols were repelled by Japanese samurai defenders, strategic fortifications, and severe weather, most famously typhoons known as “kamikaze” (divine winds). These invasions were significant for shaping Japanese military culture, fortification strategies, and national identity."',
         hasTheaters: false,
         commanders: [
           {
             name: "Kublai Khan",
             role: "Mongol Emperor",
             side: "Mongol Empire",
+            dateOfBirth: "1215",
+            dateOfDeath: "1294",
+            bio: "Kublai Khan was the grandson of the famed conqueror Genghis Khan and one of the most powerful rulers of the Mongol Empire. Born in 1215, Kublai expanded Mongol control over China and established the Yuan Dynasty, becoming the first non-Han emperor to rule all of China. His reign marked the transition from Mongol steppe conquest to imperial administration, emphasizing trade, culture, and religious tolerance.",
+            imageUrl:
+              "/eras/late-medieval/mongol-invasions/mongols/kublai-khan.jpg",
+            awards: [
+              {
+                name: "Founder of the Yuan Dynasty",
+                description:
+                  "recognized by the Mandate of Heaven in Chinese imperial tradition.",
+              },
+              {
+                name: "Kubla Khan",
+                description:
+                  "Celebrated in history and literature, notably in Marco Polo’s accounts and in Samuel Taylor Coleridge’s poem Kubla Khan",
+              },
+            ],
+
+            majorBattles: [
+              {
+                name: "Siege of Xiangyang (1267–1273)",
+                description:
+                  "A decisive campaign against the Southern Song dynasty, which opened the way for the Mongol conquest of all China.",
+                sides: [
+                  {
+                    name: "Southern Song Dynasty",
+                    imageURL:
+                      "/eras/late-medieval/mongol-invasions/Southern_Song_Dynasty.webp",
+                  },
+                  {
+                    name: "Yuan Dynasty",
+                    imageURL:
+                      "/eras/late-medieval/mongol-invasions/Yuanflag.webp",
+                  },
+                ],
+                significance:
+                  "A decisive campaign against the Southern Song dynasty, which opened the way for the Mongol conquest of all China.",
+              },
+            ],
           },
           {
             name: "Hōjō Tokimune",
@@ -82,14 +176,18 @@ export const eras: Era[] = [
             significance: "Effective in close combat against Mongol forces",
           },
         ],
-        article: `
-# Mongol Invasions of Japan (1274 & 1281)
+        tactics: [
+          {
+            side: "Mongols",
+            description:
+              "Attempted amphibious landings followed by rapid assaults. Employed massed infantry and cavalry tactics on beaches. Used coordinated combined forces from China and Korea",
+            significance: "they got killed on da beach",
+          },
+        ],
+        article: ` Mongol Invasions of Japan (1274 & 1281) 
+        Overview: The Mongol invasions of Japan were two major military campaigns launched by Kublai Khan's Yuan dynasty...
 
-## Overview
-The Mongol invasions of Japan were two major military campaigns launched by Kublai Khan's Yuan dynasty...
-
-## First Invasion (1274)
-In November 1274, a Mongol fleet of approximately 900 ships carrying 23,000 troops...
+        First Invasion (1274) In November 1274, a Mongol fleet of approximately 900 ships carrying 23,000 troops...
 
 ## Second Invasion (1281)
 The second and larger invasion attempt came in 1281...

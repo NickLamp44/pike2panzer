@@ -1,0 +1,7 @@
+import type { Side } from "../../../types";
+
+export const mongols: Side; {
+    name: "Mongols";
+
+    
+}

@@ -1,7 +1,8 @@
 import { notFound } from "next/navigation";
-import { getConflictBySlug } from "@/app/data/content";
+import { getConflictBySlug, getEraBySlug } from "@/app/data/content";
 import { ContentCard } from "@/app/components/contentCard";
 import { CardGrid } from "@/app/components/cardGrid";
+import { Breadcrumb } from "@/app/components/breadcrumb";
 
 export default async function ConflictPage({
   params,
@@ -10,15 +11,23 @@ export default async function ConflictPage({
 }) {
   const { eraSlug, conflictSlug } = await params;
   const conflict = getConflictBySlug(eraSlug, conflictSlug);
+  const era = getEraBySlug(eraSlug);
 
-  if (!conflict) {
+  if (!conflict || !era) {
     notFound();
   }
 
-  // If conflict has theaters, display them as cards
+  const breadcrumbItems = [
+    { label: era.title, href: `/eras/${eraSlug}` },
+    { label: conflict.title, href: `/eras/${eraSlug}/${conflictSlug}` },
+  ];
+
   if (conflict.hasTheaters && conflict.theaters) {
     return (
       <main className="min-h-screen">
+        <div className="container mx-auto px-3 pt-8">
+          <Breadcrumb items={breadcrumbItems} />
+        </div>
         <CardGrid title={conflict.title} description={conflict.description}>
           {conflict.theaters.map((theater) => (
             <ContentCard
@@ -34,9 +43,9 @@ export default async function ConflictPage({
     );
   }
 
-  // If no theaters, display the article content
   return (
     <main className="min-h-screen p-8 max-w-4xl mx-auto">
+      <Breadcrumb items={breadcrumbItems} />
       <h1 className="text-4xl font-bold mb-4">{conflict.title}</h1>
       <p className="text-lg text-muted-foreground mb-8">
         {conflict.description}
@@ -68,6 +77,23 @@ export default async function ConflictPage({
                 <p className="text-sm mb-2">{weapon.description}</p>
                 <p className="text-sm text-muted-foreground">
                   <strong>Significance:</strong> {weapon.significance}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {conflict.tactics && conflict.tactics.length > 0 && (
+        <section className="mb-8">
+          <h2 className="text-2xl font-semibold mb-4">Tactics & Overall Strategy</h2>
+          <div className="grid gap-4">
+            {conflict.tactics.map((tactic, index) => (
+              <div key={index} className="border rounded-lg p-4">
+                <h3 className="font-semibold">{tactic.side}</h3>
+                <p className="text-sm mb-2">{tactic.description}</p>
+                <p className="text-sm text-muted-foreground">
+                  <strong>Significance:</strong> {tactic.significance}
                 </p>
               </div>
             ))}
