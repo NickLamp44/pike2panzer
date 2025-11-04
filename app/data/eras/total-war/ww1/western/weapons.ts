@@ -1,6 +1,6 @@
 import type { Weapon } from "../../../../types";
 
-export const westernFrontWeapons: Weapon[] = [
+export const weapons: Weapon[] = [
   // LEE-ENFIELD
   {
     name: "Lee-Enfield",

@@ -41,17 +41,20 @@ export interface Theater {
   tactics?: Tactic[];
   strategies?: Strategy[];
   weapons?: Weapon[];
+  impact?: string[];
 }
 export interface Campaign {
   name: string;
   sides: Side[];
   description: string;
+  startDate: string;
+  endDate: string;
   images?: Image[];
   majorBattles?: MajorBattle[];
   tactics?: Tactic[];
   strategies?: Strategy[];
   weapons?: Weapon[];
-  impact?: string;
+  impact?: string[];
 }
 
 export interface MajorBattle {
@@ -65,16 +68,7 @@ export interface MajorBattle {
   tactics?: Tactic[];
   strategies?: Strategy[];
   weapons?: Weapon[];
-  impact?: string;
-}
-
-export interface WeaponTech {
-  name: string;
-  type: string;
-  description: string;
-  impact: string;
-  side?: string;
-  image: string;
+  impact?: string[];
 }
 
 export interface Side {
@@ -114,22 +108,31 @@ export interface Award {
 }
 
 export interface Strategy {
-  title: string;
-  description: string[];
+  name?: string;
+  description?: string[];
   side?: string;
 }
 
 export interface Tactic {
-  title: string;
+  name: string;
   description?: string[];
   weapons?: Weapon[];
   side?: Side[];
 }
 
-export interface Weapon {
+export interface WeaponTech {
   name: string;
   type: string;
   description: string[];
+  impact: string[];
+  side?: string;
+  image: string;
+}
+
+export interface Weapon {
+  name: string;
+  type?: string;
+  description?: string[];
   side?: Side[];
   images: Image[];
 }
@@ -146,7 +149,7 @@ export interface Video {
 
 export interface Image {
   url: string;
-  description: string;
+  description?: string;
   alt: string;
   source: string;
 }
