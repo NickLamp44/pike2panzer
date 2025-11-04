@@ -152,5 +152,5 @@ export type {
   Side,
   WeaponTech,
   Strategy,
-  Tactics,
+  Tactic,
 } from "./types";

@@ -14,7 +14,7 @@ export interface Conflict {
   description: string;
   hasTheaters: boolean;
   theater?: Theater[];
-  paragraphs?: Paragraph[];
+  paragraphs?: string[];
   startDate?: string;
   endDate?: string;
   commanders?: Commander[];
@@ -32,7 +32,7 @@ export interface Theater {
   description: string;
   sides: Side[];
   images?: Image[];
-  paragraphs?: Paragraph[];
+  paragraphs?: string[];
   startDate?: string;
   endDate?: string;
   commanders?: Commander[];
@@ -58,7 +58,9 @@ export interface MajorBattle {
   name: string;
   description: string;
   sides?: Side[];
-  paragraphs?: Paragraph[];
+  startDate?: string;
+  endDate?: string;
+  paragraphs?: string[];
   imageUrl?: string;
   tactics?: Tactic[];
   strategies?: Strategy[];
@@ -77,8 +79,10 @@ export interface WeaponTech {
 
 export interface Side {
   name: string;
-  flag: string;
+  aliances?: Side[];
+  flag?: string;
   description?: string;
+  dateJoined?: string;
   commanders?: Commander[];
   campaigns?: Campaign[];
   weapons?: Weapon[];
@@ -89,40 +93,44 @@ export interface Side {
 export interface Commander {
   name: string;
   rank: string;
-  side: Side;
+  side: Side[];
   nationality: string;
   dateOfBirth: string;
   dateOfDeath?: string;
   image: string;
   flag: string;
-  description: string;
+  description: string[];
+  awards?: Award[];
+  majorBattle?: MajorBattle[];
 }
 
 export interface Award {
   name: string;
   description: string;
   dateAwarded?: string;
-  images: Image[];
+  dateStarted?: string;
+  dateEnded?: string;
+  images?: Image[];
 }
 
 export interface Strategy {
   title: string;
-  description: string;
+  description: string[];
   side?: string;
 }
 
 export interface Tactic {
   title: string;
-  description: string;
+  description?: string[];
   weapons?: Weapon[];
-  side?: string;
+  side?: Side[];
 }
 
 export interface Weapon {
   name: string;
   type: string;
-  description: string;
-  side?: string;
+  description: string[];
+  side?: Side[];
   images: Image[];
 }
 
@@ -135,6 +143,7 @@ export interface Paragraph {
 export interface Video {
   url: string[];
 }
+
 export interface Image {
   url: string;
   description: string;

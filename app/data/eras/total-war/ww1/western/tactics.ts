@@ -1,15 +1,22 @@
-import type { Tactics } from "../../../../types";
+import type { Tactic } from "../../../../types";
 
-export const tactics: Tactics[] = [
+export const tactics: Tactic[] = [
   {
     title: "Creeping Barrage",
-    description:
+    description: [
       "Artillery fire that moved forward ahead of advancing infantry to suppress defenders.",
+    ],
   },
   {
     title: "Storm Trooper Tactics",
-    description:
+    description: [
       "Small groups of elite infantry using infiltration tactics to bypass strong points.",
-    side: "Central Powers",
+    ],
+    side: [
+      {
+        name: "Central Powers ",
+        aliances: [{ name: "German Empire", flag: "/" }],
+      },
+    ],
   },
 ];
