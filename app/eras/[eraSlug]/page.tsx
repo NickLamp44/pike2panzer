@@ -1,8 +1,8 @@
 import { notFound } from "next/navigation";
-import { getEraBySlug } from "@/app/data/content";
-import { ContentCard } from "@/app/components/contentCard";
-import { CardGrid } from "@/app/components/cardGrid";
-import { Breadcrumb } from "@/app/components/breadcrumb";
+import { getEraBySlug, getEraWithConflicts } from "../../data/index";
+import { ContentCard } from "../../components/contentCard";
+import { CardGrid } from "../../components/cardGrid";
+import { Breadcrumb } from "../../components/breadcrumb";
 
 export default async function EraPage({
   params,
@@ -12,7 +12,9 @@ export default async function EraPage({
   const { eraSlug } = await params;
   const era = getEraBySlug(eraSlug);
 
-  if (!era) {
+  const eraData = await getEraWithConflicts(eraSlug);
+
+  if (!era || !eraData) {
     notFound();
   }
 
@@ -22,7 +24,7 @@ export default async function EraPage({
         <Breadcrumb items={[{ label: era.title, href: `/eras/${eraSlug}` }]} />
       </div>
       <CardGrid title={era.title} description={era.description}>
-        {era.conflicts.map((conflict) => (
+        {eraData.conflicts?.map((conflict) => (
           <ContentCard
             key={conflict.slug}
             title={conflict.title}

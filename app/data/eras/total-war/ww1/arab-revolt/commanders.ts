@@ -10,7 +10,7 @@ export const commanders: Commander[] = [
     dateOfBirth: "",
     dateOfDeath: "",
     image:
-      "/eras/total-war/first-world-war/western-front/commanders/joffre.jpg",
+      "/",
     flag: "/flags/",
     description: [
       "",

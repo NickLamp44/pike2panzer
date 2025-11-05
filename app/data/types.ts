@@ -3,7 +3,8 @@ export interface Era {
   cardImage: string;
   title: string;
   description: string;
-  conflicts: Conflict[];
+  period: string;
+  conflicts?: Conflict[]; 
 }
 
 export interface Conflict {

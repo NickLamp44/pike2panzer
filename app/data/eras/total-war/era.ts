@@ -5,6 +5,6 @@ export const totalWar: Era = {
   title: "Total War",
   description:
     "The world wars that mobilized entire nations and changed history forever.",
-  image: "/eras/total-war/hero.jpg",
-  period: "1914-1945",
+  cardImage: "/eras/total-war/hero.jpg",
+  conflicts: [],
 };

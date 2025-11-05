@@ -9,8 +9,7 @@ export const commanders: Commander[] = [
     nationality: "French",
     dateOfBirth: "1852-01-12",
     dateOfDeath: "1931-01-03",
-    image:
-      "/eras/total-war/first-world-war/western-front/commanders/joffre.jpg",
+    image: "",
     flag: "/flags/france.png",
     description: [
       "Joseph Joffre was a French general best known for serving as Commander-in-Chief of the French Army during the early years of World War I. Calm, methodical, and highly organized, Joffre earned the affectionate nickname 'Papa Joffre' for his reassuring leadership and composure under pressure.",
@@ -358,7 +357,6 @@ export const commanders: Commander[] = [
         description:
           "Granted for exceptionally meritorious service to the government in a duty of great responsibility during World War I.",
         dateAwarded: "1919",
-        
       },
     ],
     majorBattle: [

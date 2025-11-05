@@ -1,7 +1,7 @@
 import type { Commander } from "../../../../types";
 
 export const commanders: Commander[] = [
-  // 
+  //
   {
     name: "",
     rank: " ",
@@ -9,32 +9,24 @@ export const commanders: Commander[] = [
     nationality: "",
     dateOfBirth: "",
     dateOfDeath: "",
-    image:
-      "/eras/total-war/first-world-war/western-front/commanders/joffre.jpg",
+    image: "",
     flag: "/flags/",
-    description: [
-      "",
-    ],
+    description: [""],
     awards: [
       {
         name: "",
-        description:
-          "",
+        description: "",
         dateStarted: "",
         dateEnded: "",
       },
-      
     ],
     majorBattle: [
       {
         name: "",
-        description:
-          "",
+        description: "",
         startDate: "",
         endDate: "",
       },
-      
     ],
   },
- 
 ];
