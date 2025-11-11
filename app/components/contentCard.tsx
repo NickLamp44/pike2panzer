@@ -3,14 +3,14 @@ import Link from "next/link";
 
 interface ContentCardProps {
   title: string;
-  imageUrl: string;
+  cardImage: string;
   imageAlt?: string;
   href: string;
 }
 
 export function ContentCard({
   title,
-  imageUrl,
+  cardImage,
   imageAlt = "Background image",
   href,
 }: ContentCardProps) {
@@ -20,7 +20,7 @@ export function ContentCard({
         {/* Background Image */}
         <div
           className="absolute inset-0 bg-cover bg-center transition-transform duration-300 group-hover:scale-105"
-          style={{ backgroundImage: `url(${imageUrl})` }}
+          style={{ backgroundImage: `url(${cardImage})` }}
           role="img"
           aria-label={imageAlt}
         />

@@ -1,107 +1,157 @@
+// Major Types
+
+//Eras of War (late-medieval, early-gunpowder, revolutionary-imperial, dawn-industrial-warfare, total-war, post-war)
 export interface Era {
   slug: string;
   cardImage: string;
   title: string;
-  description: string;
-  period: string;
-  conflicts?: Conflict[]; 
+  cardDescription: string; // short paragraph for when a user hovers over a card
+  description: string; // more indepth description once a user selects an era
+  period: string; // timeframe
+  conflicts?: string[]; // reference to the conflicts that take place during that time frame
 }
 
+// conflict will ref slugs to the relevant categoires & objects
 export interface Conflict {
   slug: string;
-  cardImage: string;
   title: string;
-  sides: Side[];
-  description: string;
-  hasTheaters: boolean;
-  theater?: Theater[];
-  paragraphs?: string[];
   startDate?: string;
   endDate?: string;
-  commanders?: Commander[];
-  campaigns?: Campaign[];
-  majorBattles?: MajorBattle[];
-  tactics?: Tactic[];
-  strategies?: Strategy[];
-  weapons?: Weapon[];
+  cardImage: string;
+  cardDescription: string; // short paragraph for when a user hovers over a card
+
+  sides: string[]; // slug array for alliances/countries/factions involved in the conflict
+
+  intro?: Paragraph[]; //  array for paragraphs regardling the lead up to war and the global/social/econimical factors at play
+
+  impact?: string[]; // slug array for paragraphs regardling the conflict
+
+  hasTheaters: boolean;
+  theater?: string[]; // slug array for Theaters involved in the conflict
+
+  commanders?: string[]; // slug array for Major leaders involved in the conflict
+
+  campaigns?: string[]; // slug array for Major campaigns involved in the conflict
+
+  majorBattles?: string[]; // slug array of Major battles that occured during the conflict
+
+  tactics?: string[]; // slug array for new tactics developed or used in the conflict
+
+  strategies?: string[]; // slug array to new strategies developed or used in the conflict
+
+  weaponTech?: string[]; // slug array for revolutionary weapons & technology that changed how conflict was fought
+
+  weapons?: string[]; // slug array for specific weapons widely used during the conflict
 }
 
 export interface Theater {
   slug: string;
-  cardImage: string;
   title: string;
-  description: string;
-  sides: Side[];
-  images?: Image[];
-  paragraphs?: string[];
   startDate?: string;
   endDate?: string;
-  commanders?: Commander[];
-  campaigns?: Campaign[];
-  majorBattles?: MajorBattle[];
-  tactics?: Tactic[];
-  strategies?: Strategy[];
-  weapons?: Weapon[];
-  impact?: string[];
+  cardImage: string;
+  cardDescription: string; // short paragraph for when a user hovers over a card
+
+  impact?: string[]; // slug array for paragraphs regardling the theater
+
+  sides: string[]; // slug array for alliances/countries/factions involved in the theater
+
+  commanders?: string[]; // slug array for Major leaders involved in the theater
+
+  campaigns?: string[]; // slug array for Major campaigns involved in the theater
+
+  majorBattles?: string[]; // slug array of Major battles that occured during the theater
+
+  tactics?: string[]; // slug array for new tactics developed or used in the theater
+
+  strategies?: string[]; // slug array to new strategies developed or used in the theater
+
+  weaponTech?: string[]; // slug array for revolutionary weapons & technology that changed how conflict/theater was fought
+
+  weapons?: string[]; // slug array for specific weapons widely used during the theater
 }
+
 export interface Campaign {
   name: string;
-  sides: Side[];
-  description: string;
+  slug: string;
   startDate: string;
   endDate: string;
-  images?: Image[];
-  majorBattles?: MajorBattle[];
-  tactics?: Tactic[];
-  strategies?: Strategy[];
-  weapons?: Weapon[];
-  impact?: string[];
+  cardImage: string;
+  cardDescription: string; // short paragraph for when a user hovers over a card
+
+  impact?: string[]; // slug array for paragraphs regardling the campaign
+
+  sides: string[]; // slug array for alliances/countries/factions involved in the campaign
+
+  commanders?: string[]; // slug array for Major leaders involved in the campaign
+
+  majorBattles?: string[]; // slug array of Major battles that occured during the campaign
+
+  tactics?: string[]; // slug array for new tactics developed or used in the campaign
+
+  strategies?: string[]; // slug array to new strategies developed or used in the campaign
+
+  weaponTech?: string[]; // slug array for revolutionary weapons & technology that changed how conflict/theater/campaign was fought
+
+  weapons?: string[]; // slug array for specific weapons widely used during the campaign
 }
 
 export interface MajorBattle {
   name: string;
-  description: string;
-  sides?: Side[];
+  slug?: string;
   startDate?: string;
   endDate?: string;
-  paragraphs?: string[];
-  imageUrl?: string;
-  tactics?: Tactic[];
-  strategies?: Strategy[];
-  weapons?: Weapon[];
-  impact?: string[];
+  cardDescription?: string; // short paragraph for when a user hovers over a card
+
+  description?: string;
+
+  impact?: string[]; // slug array for paragraphs regardling the Battle
+
+  sides?: string[]; // slug array for alliances/countries/factions involved in the Battle
+
+  commanders?: string[]; // slug array for Major leaders involved in the Battle
+
+  tactics?: string[]; // slug array for new tactics developed or used in the Battle
+
+  strategies?: string[]; // slug array to new strategies developed or used in the Battle
+
+  weaponTech?: string[]; // slug array for revolutionary weapons & technology that changed how conflict/theater/campaign/battle was fought
+
+  weapons?: string[]; // slug array for specific weapons widely used during the Battle
 }
 
 export interface Side {
   name: string;
+  slug?: string;
   aliances?: Side[];
   flag?: string;
   description?: string;
   dateJoined?: string;
   commanders?: Commander[];
-  campaigns?: Campaign[];
-  weapons?: Weapon[];
-  strategies?: Strategy[];
-  tactics?: Tactic[];
+  reason?: string[]; // why the side may have joined the conflict
 }
 
 export interface Commander {
+  slug: string;
   name: string;
+
   rank: string;
-  side: Side[];
+  side?: Side[];
   nationality: string;
-  dateOfBirth: string;
+  dateOfBirth?: string;
   dateOfDeath?: string;
-  image: string;
+  image?: string;
   flag: string;
   description: string[];
   awards?: Award[];
-  majorBattle?: MajorBattle[];
+  campaigns?: string[]; // slug array for Major campaigns the commander was involved
+
+  majorBattle?: MajorBattle[]; // slug array of Major battles that the commander was involved
 }
 
 export interface Award {
   name: string;
-  description: string;
+  description?: string;
   dateAwarded?: string;
   dateStarted?: string;
   dateEnded?: string;
@@ -109,9 +159,10 @@ export interface Award {
 }
 
 export interface Strategy {
-  name?: string;
+  name: string;
   description?: string[];
   side?: string;
+  tactics?: Tactic[];
 }
 
 export interface Tactic {
@@ -123,6 +174,7 @@ export interface Tactic {
 
 export interface WeaponTech {
   name: string;
+  slug: string;
   type: string;
   description: string[];
   impact: string[];
@@ -131,7 +183,10 @@ export interface WeaponTech {
 }
 
 export interface Weapon {
+  slug: string;
   name: string;
+  cardImage: string;
+  cardDescription: string; // short paragraph for when a user hovers over a card
   type?: string;
   description?: string[];
   side?: Side[];

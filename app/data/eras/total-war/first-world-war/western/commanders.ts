@@ -1,11 +1,82 @@
 import type { Commander } from "../../../../types";
 
 export const commanders: Commander[] = [
+  //John J Pershing
+  {
+    slug: "john-j-pershing",
+    name: "John J. Pershing",
+    rank: "General of the Armies",
+    side: [{ name: "Allied Powers" }],
+    nationality: "United States of America",
+    dateOfBirth: "September 13, 1860",
+    dateOfDeath: "July 15, 1948",
+    image:
+      "/eras/total-war/first-world-war/western-front/commanders/john_j_pershing.png",
+    flag: "/flags/usa.png",
+    description: [
+      "John Joseph 'Black Jack' Pershing was the commander of the American Expeditionary Forces (AEF) during World War I. A disciplined and deliberate leader, Pershing was tasked with building an army of millions from scratch and integrating them into the Allied war effort while maintaining American independence of command.",
+      "Pershing emphasized training, discipline, and aggressive offensive tactics. He resisted calls to amalgamate U.S. troops under British and French command, instead insisting that American forces fight as a unified army. Under his leadership, the AEF played decisive roles in halting the German offensives of 1918 and spearheading the Allied counteroffensive that ended the war.",
+      "After the Armistice, Pershing was celebrated as a national hero and became the only American ever promoted to the unique rank of General of the Armies in his lifetime—a title later held posthumously by George Washington.",
+    ],
+    awards: [
+      {
+        name: "General of the Armies of the United States",
+        description:
+          "The highest rank ever held in the U.S. Army, bestowed upon Pershing in recognition of his leadership and service during World War I.",
+        dateStarted: "September 3, 1919",
+        dateEnded: "July 15, 1948",
+      },
+      {
+        name: "Distinguished Service Cross",
+        description:
+          "Awarded for extraordinary heroism in combat during World War I, recognizing Pershing's leadership and bravery under fire during the early campaigns of 1918.",
+        dateAwarded: "1919",
+      },
+      {
+        name: "Army Distinguished Service Medal",
+        description:
+          "Granted for exceptionally meritorious service to the government in a duty of great responsibility during World War I.",
+        dateAwarded: "1919",
+      },
+    ],
+    majorBattle: [
+      {
+        name: "Battle of Cantigny",
+        description:
+          "The first major American offensive of World War I. Under Pershing’s oversight, the 1st U.S. Division captured Cantigny on May 28, 1918, demonstrating American capability and boosting Allied morale.",
+        startDate: "May 28, 1918",
+        endDate: "May 31, 1918",
+      },
+      {
+        name: "Battle of Château-Thierry",
+        description:
+          "Pershing's troops helped halt the German advance toward Paris, fighting alongside French forces to reclaim key territory along the Marne River in June 1918.",
+        startDate: "June 3, 1918",
+        endDate: "June 26, 1918",
+      },
+      {
+        name: "Battle of Saint-Mihiel",
+        description:
+          "The first major operation conducted entirely by the American Expeditionary Forces under Pershing’s independent command. The offensive successfully reduced the German salient at Saint-Mihiel, proving the effectiveness of the new U.S. Army.",
+        startDate: "September 12, 1918",
+        endDate: "September 16, 1918",
+      },
+      {
+        name: "Meuse-Argonne Offensive",
+        description:
+          "The largest and bloodiest operation in U.S. military history, involving over 1.2 million American soldiers. Pershing coordinated a massive assault that ultimately broke through German lines, leading to the Armistice of November 11, 1918.",
+        startDate: "September 26, 1918",
+        endDate: "November 11, 1918",
+      },
+    ],
+  },
+
   // Joseph Joffre
   {
+    slug: "joseph-joffre",
     name: "Joseph Joffre",
     rank: "Commander-in-Chief of the French Army",
-    side: [{ name: "France" }],
+    side: [{ name: "Allied Powers" }],
     nationality: "French",
     dateOfBirth: "1852-01-12",
     dateOfDeath: "1931-01-03",
@@ -83,9 +154,10 @@ export const commanders: Commander[] = [
   },
   // Philippe Pétain
   {
+    slug: "philippe-petain",
     name: "Philippe Pétain",
     rank: "General of the French Army",
-    side: [{ name: "France" }],
+    side: [{ name: "Allied Powers" }],
     nationality: "French",
     dateOfBirth: "1856-04-24",
     dateOfDeath: "1951-07-23",
@@ -162,8 +234,92 @@ export const commanders: Commander[] = [
       },
     ],
   },
+
+  // Ferdinand Foch
+  {
+    slug: "ferdinand-foch",
+    name: "Ferdinand Foch",
+    rank: "Supreme Allied Commander",
+    side: [{ name: "Allied Powers" }],
+    nationality: "French",
+    dateOfBirth: "1851-10-02",
+    dateOfDeath: "1929-03-20",
+    image: "/eras/total-war/first-world-war/western-front/commanders/foch.jpg",
+    flag: "/flags/france.png",
+    description: [
+      "Ferdinand Foch was a French general and military theorist who rose to become Supreme Commander of the Allied Armies during the final phase of World War I. A firm believer in offensive action and unity of command, Foch’s strategic coordination was instrumental in turning the tide of the war in 1918.",
+
+      "At the outbreak of the war, Foch commanded the French XX Corps at the Battle of the Frontiers and later the Ninth Army at the Marne, where his leadership and resolve helped stop the German advance. Throughout 1915–1916, he directed major operations at Artois and the Somme, earning a reputation for determination and tactical skill.",
+
+      "In 1918, as the German Spring Offensive threatened to break the Allied lines, Foch was appointed Supreme Allied Commander, tasked with unifying French, British, and later American forces under a single coordinated strategy. His calm yet assertive leadership stabilized the front and set the stage for a series of decisive counteroffensives.",
+
+      "Under his direction, the Allies launched the Hundred Days Offensive, breaking through German defenses and forcing an armistice in November 1918. For his achievements, Foch was elevated to Marshal of France, as well as Marshal of Great Britain and Poland, becoming one of the most celebrated Allied leaders of the Great War.",
+    ],
+    awards: [
+      {
+        name: "Marshal of France",
+        description:
+          "Highest French military rank, awarded for his leadership as Supreme Allied Commander during the final campaigns of World War I.",
+        dateStarted: "1918",
+        dateEnded: "1918",
+      },
+      {
+        name: "Supreme Allied Commander",
+        description:
+          "Unified commander of all Allied forces on the Western Front, coordinating French, British, and American armies during the final year of the war.",
+        dateStarted: "1918",
+        dateEnded: "1918",
+      },
+    ],
+    majorBattle: [
+      {
+        name: "Battle of the Frontiers",
+        description:
+          "At the start of World War I, Foch commanded the French XX Corps in Lorraine. His forces fought stubbornly during the early engagements, helping to slow the German advance despite suffering heavy casualties.",
+        startDate: "1914-08-07",
+        endDate: "1914-09-13",
+      },
+      {
+        name: "Battle of the Marne",
+        description:
+          "As commander of the French Ninth Army, Foch played a decisive role in the Allied counterattack at the Marne. His steadfast defense and timely counterassaults helped halt the German advance toward Paris, contributing to one of the war’s most important Allied victories.",
+        startDate: "1914-09-06",
+        endDate: "1914-09-12",
+      },
+      {
+        name: "Second Battle of Artois",
+        description:
+          "In 1915, Foch commanded Army Group North during the French offensive in Artois. The attack aimed to break the German line near Arras but achieved limited success due to strong defenses and coordination issues.",
+        startDate: "1915-05-09",
+        endDate: "1915-06-18",
+      },
+      {
+        name: "Battle of the Somme",
+        description:
+          "In 1916, Foch led the French Tenth Army during the joint Franco-British offensive on the Somme. His coordination with British forces showcased the growing cooperation between the Allies and helped divert German resources from Verdun.",
+        startDate: "1916-07-01",
+        endDate: "1916-11-18",
+      },
+      {
+        name: "German Spring Offensive",
+        description:
+          "During Germany’s massive 1918 assault, Foch was appointed Supreme Allied Commander to unify the response. His skillful management of reserves and insistence on coordinated defense prevented a German breakthrough and restored Allied momentum.",
+        startDate: "1918-03-21",
+        endDate: "1918-07-18",
+      },
+      {
+        name: "Hundred Days Offensive",
+        description:
+          "Foch masterminded the final Allied offensives from August to November 1918. Coordinating multinational forces, he oversaw a series of decisive victories that broke the German army’s resistance and forced the Armistice that ended the war.",
+        startDate: "1918-08-08",
+        endDate: "1918-11-11",
+      },
+    ],
+  },
+
   // Douglas Haig
   {
+    slug: "douglas-haig",
     name: "Douglas Haig",
     rank: "Field Marshal, Commander-in-Chief of the British Expeditionary Force",
     side: [{ name: "United Kingdom" }],
@@ -242,156 +398,10 @@ export const commanders: Commander[] = [
       },
     ],
   },
-  // Ferdinand Foch
-  {
-    name: "Ferdinand Foch",
-    rank: "Supreme Allied Commander",
-    side: [{ name: "France" }],
-    nationality: "French",
-    dateOfBirth: "1851-10-02",
-    dateOfDeath: "1929-03-20",
-    image: "/eras/total-war/first-world-war/western-front/commanders/foch.jpg",
-    flag: "/flags/france.png",
-    description: [
-      "Ferdinand Foch was a French general and military theorist who rose to become Supreme Commander of the Allied Armies during the final phase of World War I. A firm believer in offensive action and unity of command, Foch’s strategic coordination was instrumental in turning the tide of the war in 1918.",
 
-      "At the outbreak of the war, Foch commanded the French XX Corps at the Battle of the Frontiers and later the Ninth Army at the Marne, where his leadership and resolve helped stop the German advance. Throughout 1915–1916, he directed major operations at Artois and the Somme, earning a reputation for determination and tactical skill.",
-
-      "In 1918, as the German Spring Offensive threatened to break the Allied lines, Foch was appointed Supreme Allied Commander, tasked with unifying French, British, and later American forces under a single coordinated strategy. His calm yet assertive leadership stabilized the front and set the stage for a series of decisive counteroffensives.",
-
-      "Under his direction, the Allies launched the Hundred Days Offensive, breaking through German defenses and forcing an armistice in November 1918. For his achievements, Foch was elevated to Marshal of France, as well as Marshal of Great Britain and Poland, becoming one of the most celebrated Allied leaders of the Great War.",
-    ],
-    awards: [
-      {
-        name: "Marshal of France",
-        description:
-          "Highest French military rank, awarded for his leadership as Supreme Allied Commander during the final campaigns of World War I.",
-        dateStarted: "1918",
-        dateEnded: "1918",
-      },
-      {
-        name: "Supreme Allied Commander",
-        description:
-          "Unified commander of all Allied forces on the Western Front, coordinating French, British, and American armies during the final year of the war.",
-        dateStarted: "1918",
-        dateEnded: "1918",
-      },
-    ],
-    majorBattle: [
-      {
-        name: "Battle of the Frontiers",
-        description:
-          "At the start of World War I, Foch commanded the French XX Corps in Lorraine. His forces fought stubbornly during the early engagements, helping to slow the German advance despite suffering heavy casualties.",
-        startDate: "1914-08-07",
-        endDate: "1914-09-13",
-      },
-      {
-        name: "Battle of the Marne",
-        description:
-          "As commander of the French Ninth Army, Foch played a decisive role in the Allied counterattack at the Marne. His steadfast defense and timely counterassaults helped halt the German advance toward Paris, contributing to one of the war’s most important Allied victories.",
-        startDate: "1914-09-06",
-        endDate: "1914-09-12",
-      },
-      {
-        name: "Second Battle of Artois",
-        description:
-          "In 1915, Foch commanded Army Group North during the French offensive in Artois. The attack aimed to break the German line near Arras but achieved limited success due to strong defenses and coordination issues.",
-        startDate: "1915-05-09",
-        endDate: "1915-06-18",
-      },
-      {
-        name: "Battle of the Somme",
-        description:
-          "In 1916, Foch led the French Tenth Army during the joint Franco-British offensive on the Somme. His coordination with British forces showcased the growing cooperation between the Allies and helped divert German resources from Verdun.",
-        startDate: "1916-07-01",
-        endDate: "1916-11-18",
-      },
-      {
-        name: "German Spring Offensive",
-        description:
-          "During Germany’s massive 1918 assault, Foch was appointed Supreme Allied Commander to unify the response. His skillful management of reserves and insistence on coordinated defense prevented a German breakthrough and restored Allied momentum.",
-        startDate: "1918-03-21",
-        endDate: "1918-07-18",
-      },
-      {
-        name: "Hundred Days Offensive",
-        description:
-          "Foch masterminded the final Allied offensives from August to November 1918. Coordinating multinational forces, he oversaw a series of decisive victories that broke the German army’s resistance and forced the Armistice that ended the war.",
-        startDate: "1918-08-08",
-        endDate: "1918-11-11",
-      },
-    ],
-  },
-  //John J Pershing
-  {
-    name: "John J. Pershing",
-    rank: "General of the Armies",
-    side: [{ name: "Allies" }],
-    nationality: "United States of America",
-    dateOfBirth: "September 13, 1860",
-    dateOfDeath: "July 15, 1948",
-    image:
-      "/eras/total-war/first-world-war/western-front/commanders/john_j_pershing.png",
-    flag: "/flags/usa.png",
-    description: [
-      "John Joseph 'Black Jack' Pershing was the commander of the American Expeditionary Forces (AEF) during World War I. A disciplined and deliberate leader, Pershing was tasked with building an army of millions from scratch and integrating them into the Allied war effort while maintaining American independence of command.",
-      "Pershing emphasized training, discipline, and aggressive offensive tactics. He resisted calls to amalgamate U.S. troops under British and French command, instead insisting that American forces fight as a unified army. Under his leadership, the AEF played decisive roles in halting the German offensives of 1918 and spearheading the Allied counteroffensive that ended the war.",
-      "After the Armistice, Pershing was celebrated as a national hero and became the only American ever promoted to the unique rank of General of the Armies in his lifetime—a title later held posthumously by George Washington.",
-    ],
-    awards: [
-      {
-        name: "General of the Armies of the United States",
-        description:
-          "The highest rank ever held in the U.S. Army, bestowed upon Pershing in recognition of his leadership and service during World War I.",
-        dateStarted: "September 3, 1919",
-        dateEnded: "July 15, 1948",
-      },
-      {
-        name: "Distinguished Service Cross",
-        description:
-          "Awarded for extraordinary heroism in combat during World War I, recognizing Pershing's leadership and bravery under fire during the early campaigns of 1918.",
-        dateAwarded: "1919",
-      },
-      {
-        name: "Army Distinguished Service Medal",
-        description:
-          "Granted for exceptionally meritorious service to the government in a duty of great responsibility during World War I.",
-        dateAwarded: "1919",
-      },
-    ],
-    majorBattle: [
-      {
-        name: "Battle of Cantigny",
-        description:
-          "The first major American offensive of World War I. Under Pershing’s oversight, the 1st U.S. Division captured Cantigny on May 28, 1918, demonstrating American capability and boosting Allied morale.",
-        startDate: "May 28, 1918",
-        endDate: "May 31, 1918",
-      },
-      {
-        name: "Battle of Château-Thierry",
-        description:
-          "Pershing's troops helped halt the German advance toward Paris, fighting alongside French forces to reclaim key territory along the Marne River in June 1918.",
-        startDate: "June 3, 1918",
-        endDate: "June 26, 1918",
-      },
-      {
-        name: "Battle of Saint-Mihiel",
-        description:
-          "The first major operation conducted entirely by the American Expeditionary Forces under Pershing’s independent command. The offensive successfully reduced the German salient at Saint-Mihiel, proving the effectiveness of the new U.S. Army.",
-        startDate: "September 12, 1918",
-        endDate: "September 16, 1918",
-      },
-      {
-        name: "Meuse-Argonne Offensive",
-        description:
-          "The largest and bloodiest operation in U.S. military history, involving over 1.2 million American soldiers. Pershing coordinated a massive assault that ultimately broke through German lines, leading to the Armistice of November 11, 1918.",
-        startDate: "September 26, 1918",
-        endDate: "November 11, 1918",
-      },
-    ],
-  },
   // Helmth von Moltke the Younger
   {
+    slug: "helmth-von-moltke",
     name: "Helmuth von Moltke the Younger",
     rank: "Generaloberst (Colonel General)",
     side: [{ name: "Central Powers" }],
@@ -454,6 +464,7 @@ export const commanders: Commander[] = [
 
   // Eric von Falkenhayn
   {
+    slug: "erich-von-flakenhayn",
     name: "Erich von Falkenhayn",
     rank: "General of the Infantry",
     side: [{ name: "Central Powers" }],
@@ -523,6 +534,7 @@ export const commanders: Commander[] = [
 
   //Paul von Hindenburg
   {
+    slug: "paul-von-hindenburg",
     name: "Paul von Hindenburg",
     rank: "Generalfeldmarschall (Field Marshal)",
     side: [{ name: "Central Powers" }],
@@ -612,6 +624,7 @@ export const commanders: Commander[] = [
 
   //Erich Ludendorff
   {
+    slug: "erich-ludendorff",
     name: "Erich Ludendorff",
     rank: "General of the Infantry",
     side: [{ name: "Central Powers" }],

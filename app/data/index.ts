@@ -6,31 +6,44 @@ export async function getConflictData(eraSlug: string, conflictSlug: string) {
     const conflictModule = await import(
       `./eras/${eraSlug}/${conflictSlug}/${conflictSlug}.ts`
     );
-    const sidesModule = await import(
-      `./eras/${eraSlug}/${conflictSlug}/sides.ts`
-    );
-    const commandersModule = await import(
-      `./eras/${eraSlug}/${conflictSlug}/commanders.ts`
-    );
-    const weaponsModule = await import(
-      `./eras/${eraSlug}/${conflictSlug}/weaponsTech.ts`
-    );
-    const strategyModule = await import(
-      `./eras/${eraSlug}/${conflictSlug}/strategy.ts`
-    );
-    const tacticsModule = await import(
-      `./eras/${eraSlug}/${conflictSlug}/tactics.ts`
-    );
+
+    // Load optional files - some may not exist yet
+    const [
+      sidesModule,
+      commandersModule,
+      weaponsModule,
+      strategyModule,
+      tacticsModule,
+    ] = await Promise.allSettled([
+      import(`./eras/${eraSlug}/${conflictSlug}/sides.ts`),
+      import(`./eras/${eraSlug}/${conflictSlug}/commanders.ts`),
+      import(`./eras/${eraSlug}/${conflictSlug}/weaponsTech.ts`),
+      import(`./eras/${eraSlug}/${conflictSlug}/strategy.ts`),
+      import(`./eras/${eraSlug}/${conflictSlug}/tactics.ts`),
+    ]);
 
     return {
       conflict:
         conflictModule.default ||
         conflictModule[Object.keys(conflictModule)[0]],
-      sides: sidesModule.sides || [],
-      commanders: commandersModule.commanders || [],
-      weaponsTech: weaponsModule.weaponsTech || [],
-      strategy: strategyModule.strategy || [],
-      tactics: tacticsModule.tactics || [],
+      sides:
+        sidesModule.status === "fulfilled" ? sidesModule.value.sides || [] : [],
+      commanders:
+        commandersModule.status === "fulfilled"
+          ? commandersModule.value.commanders || []
+          : [],
+      weaponsTech:
+        weaponsModule.status === "fulfilled"
+          ? weaponsModule.value.weaponsTech || []
+          : [],
+      strategy:
+        strategyModule.status === "fulfilled"
+          ? strategyModule.value.strategy || []
+          : [],
+      tactics:
+        tacticsModule.status === "fulfilled"
+          ? tacticsModule.value.tactics || []
+          : [],
     };
   } catch (error) {
     console.error(
@@ -51,30 +64,43 @@ export async function getTheaterData(
     const theaterModule = await import(
       `./eras/${eraSlug}/${conflictSlug}/${theaterSlug}/${theaterSlug}.ts`
     );
-    const sidesModule = await import(
-      `./eras/${eraSlug}/${conflictSlug}/${theaterSlug}/sides.ts`
-    );
-    const commandersModule = await import(
-      `./eras/${eraSlug}/${conflictSlug}/${theaterSlug}/commanders.ts`
-    );
-    const weaponsModule = await import(
-      `./eras/${eraSlug}/${conflictSlug}/${theaterSlug}/weaponsTech.ts`
-    );
-    const strategyModule = await import(
-      `./eras/${eraSlug}/${conflictSlug}/${theaterSlug}/strategy.ts`
-    );
-    const tacticsModule = await import(
-      `./eras/${eraSlug}/${conflictSlug}/${theaterSlug}/tactics.ts`
-    );
+
+    // Load optional files - some may not exist yet
+    const [
+      sidesModule,
+      commandersModule,
+      weaponsModule,
+      strategyModule,
+      tacticsModule,
+    ] = await Promise.allSettled([
+      import(`./eras/${eraSlug}/${conflictSlug}/${theaterSlug}/sides.ts`),
+      import(`./eras/${eraSlug}/${conflictSlug}/${theaterSlug}/commanders.ts`),
+      import(`./eras/${eraSlug}/${conflictSlug}/${theaterSlug}/weaponsTech.ts`),
+      import(`./eras/${eraSlug}/${conflictSlug}/${theaterSlug}/strategy.ts`),
+      import(`./eras/${eraSlug}/${conflictSlug}/${theaterSlug}/tactics.ts`),
+    ]);
 
     return {
       theater:
         theaterModule.default || theaterModule[Object.keys(theaterModule)[0]],
-      sides: sidesModule.sides || [],
-      commanders: commandersModule.commanders || [],
-      weaponsTech: weaponsModule.weaponsTech || [],
-      strategy: strategyModule.strategy || [],
-      tactics: tacticsModule.tactics || [],
+      sides:
+        sidesModule.status === "fulfilled" ? sidesModule.value.sides || [] : [],
+      commanders:
+        commandersModule.status === "fulfilled"
+          ? commandersModule.value.commanders || []
+          : [],
+      weaponsTech:
+        weaponsModule.status === "fulfilled"
+          ? weaponsModule.value.weaponsTech || []
+          : [],
+      strategy:
+        strategyModule.status === "fulfilled"
+          ? strategyModule.value.strategy || []
+          : [],
+      tactics:
+        tacticsModule.status === "fulfilled"
+          ? tacticsModule.value.tactics || []
+          : [],
     };
   } catch (error) {
     console.error(
@@ -88,46 +114,12 @@ export async function getTheaterData(
 // Static era data (lightweight, can be imported directly)
 export const eras: Era[] = [
   {
-    slug: "late-medieval",
-    title: "Late Medieval",
-    description: "The transition from medieval to early modern warfare.",
-    cardImage: "/eras/late-medieval/hero.jpg",
-    period: "1200-1500",
-  },
-  {
-    slug: "rise-of-gunpowder",
-    title: "Rise of Gunpowder",
-    description: "The introduction of gunpowder weapons transformed warfare.",
-    cardImage: "/eras/rise-of-gunpowder/hero.jpg",
-    period: "1500-1700",
-  },
-  {
-    slug: "revolutionary-imperial",
-    title: "Revolutionary & Imperial Wars",
-    description: "Wars of revolution and empire building.",
-    cardImage: "/eras/revolutionary-imperial/hero.jpg",
-    period: "1700-1850",
-  },
-  {
-    slug: "dawn-industrial-warfare",
-    title: "Dawn of Industrial Warfare",
-    description: "Industrial revolution transforms military technology.",
-    cardImage: "/eras/dawn-industrial-warfare/hero.jpg",
-    period: "1850-1914",
-  },
-  {
     slug: "total-war",
     title: "Total War",
+    cardDescription: "The transition from medieval to early modern warfare.",
     description: "The world wars that mobilized entire nations.",
     cardImage: "/eras/total-war/hero.jpg",
     period: "1914-1945",
-  },
-  {
-    slug: "post-war",
-    title: "Cold War",
-    description: "Conflicts during the Cold War era.",
-    cardImage: "/eras/post-war/hero.jpg",
-    period: "1945-1991",
   },
 ];
 
@@ -287,19 +279,21 @@ export async function getTheaterWithAllData(
 
 // Helper to get conflict slugs for an era
 async function getConflictSlugsForEra(eraSlug: string): Promise<string[]> {
-  // This requires a mapping since we can't dynamically scan folders at runtime
-  // You can either hardcode this or create a conflicts.ts file listing them
   const conflictMap: Record<string, string[]> = {
     "late-medieval": ["hundred-years-war", "war-of-roses", "mongol-invasions"],
-    "rise-of-gunpowder": [],
-    "revolutionary-imperial": [],
+    "rise-of-gunpowder": ["ming-manchu", "30-years-war", "anglo-spanish"],
+    "revolutionary-imperial": [
+      "american-revolution",
+      "french-revolution",
+      "napoleonic-wars",
+    ],
     "dawn-industrial-warfare": [
       "american-civil-war",
       "austro-prussian-war",
       "franco-prussian-war",
     ],
-    "total-war": ["ww1", "ww2"],
-    "post-war": [],
+    "total-war": ["first-world-war", "second-world-war"],
+    "post-war": ["korean-war", "vietnam-war", "falklands-war", "gulf-war", ""],
   };
   return conflictMap[eraSlug] || [];
 }
@@ -317,15 +311,3 @@ async function getTheaterSlugsForConflict(
   };
   return theaterMap[eraSlug]?.[conflictSlug] || [];
 }
-
-// Re-export types
-export type {
-  Era,
-  Conflict,
-  Theater,
-  Commander,
-  Side,
-  WeaponTech,
-  Strategy,
-  Tactic,
-} from "./types";

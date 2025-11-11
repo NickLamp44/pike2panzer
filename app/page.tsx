@@ -12,7 +12,7 @@ export default function Home() {
             <ContentCard
               key={era.slug}
               title={era.title}
-              imageUrl={era.imageUrl}
+              cardImage={era.cardImage}
               imageAlt={`${era.title} background`}
               href={`/eras/${era.slug}`}
             />

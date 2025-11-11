@@ -4,8 +4,9 @@ import type { Campaign } from "../../../../types";
 export const majorBattles: MajorBattle[] = [
   {
     name: "Battle of the Frontiers",
-    startDate: "1914-08-07",
-    endDate: "1914-09-13",
+    slug: "",
+    startDate: "August 7th, 1914",
+    endDate: "September 13th, 1914",
     description:
       "A series of early clashes along France’s eastern borders as the German army advanced through Belgium and into France. The battles marked the opening phase of the Western Front.",
     sides: [
@@ -39,6 +40,7 @@ export const majorBattles: MajorBattle[] = [
   },
   {
     name: "First Battle of the Marne",
+    slug: "",
     startDate: "1914-09-06",
     endDate: "1914-09-12",
     description:
@@ -76,6 +78,7 @@ export const majorBattles: MajorBattle[] = [
   },
   {
     name: "Battle of Verdun",
+    slug: "",
     startDate: "1916-02-21",
     endDate: "1916-12-18",
     description:
@@ -107,6 +110,7 @@ export const majorBattles: MajorBattle[] = [
   },
   {
     name: "Battle of the Somme",
+    slug: "",
     startDate: "1916-07-01",
     endDate: "1916-11-18",
     description:
@@ -141,6 +145,7 @@ export const majorBattles: MajorBattle[] = [
   },
   {
     name: "Third Battle of Ypres (Passchendaele)",
+    slug: "",
     startDate: "1917-07-31",
     endDate: "1917-11-10",
     description:
@@ -176,6 +181,7 @@ export const majorBattles: MajorBattle[] = [
   },
   {
     name: "German Spring Offensive",
+    slug: "",
     startDate: "1918-03-21",
     endDate: "1918-07-18",
     description:
@@ -214,6 +220,7 @@ export const majorBattles: MajorBattle[] = [
   },
   {
     name: "Hundred Days Offensive",
+    slug: "",
     startDate: "1918-08-08",
     endDate: "1918-11-11",
     description:
@@ -257,6 +264,7 @@ export const majorBattles: MajorBattle[] = [
 export const campaign: Campaign[] = [
   {
     name: "Opening Campaign – Battle of the Frontiers",
+    slug: "",
     startDate: "1914-08-07",
     endDate: "1914-09-13",
     sides: [
@@ -277,6 +285,7 @@ export const campaign: Campaign[] = [
     majorBattles: [
       {
         name: "Battle of the Frontiers",
+        slug: "",
         description:
           "A series of engagements across Alsace, Lorraine, and southern Belgium that resulted in heavy Allied losses and a strategic retreat toward the Marne.",
         startDate: "1914-08-07",
@@ -284,6 +293,7 @@ export const campaign: Campaign[] = [
       },
       {
         name: "First Battle of the Marne",
+        slug: "",
         description:
           "A critical Allied counterattack that stopped the German advance toward Paris, ending hopes for a quick victory and setting the stage for trench warfare.",
         startDate: "1914-09-06",
@@ -294,6 +304,7 @@ export const campaign: Campaign[] = [
 
   {
     name: "Race to the Sea",
+    slug: "",
     startDate: "1914-09-17",
     endDate: "1914-11-19",
     sides: [
@@ -314,6 +325,7 @@ export const campaign: Campaign[] = [
     majorBattles: [
       {
         name: "First Battle of Ypres",
+        slug: "",
         description:
           "British and French troops halted the final German push toward the Channel ports, solidifying the trench line that would define the Western Front.",
         startDate: "1914-10-19",
@@ -324,6 +336,7 @@ export const campaign: Campaign[] = [
 
   {
     name: "Verdun and Somme Campaigns",
+    slug: "",
     startDate: "1916-02-21",
     endDate: "1916-11-18",
     sides: [
@@ -343,6 +356,7 @@ export const campaign: Campaign[] = [
     majorBattles: [
       {
         name: "Battle of Verdun",
+        slug: "",
         description:
           "Germany’s attempt to wear down French morale and defenses in a prolonged siege that became a symbol of French determination.",
         startDate: "1916-02-21",
@@ -350,6 +364,7 @@ export const campaign: Campaign[] = [
       },
       {
         name: "Battle of the Somme",
+        slug: "",
         description:
           "A massive Anglo-French offensive designed to relieve Verdun and break through German lines; marked the first use of tanks.",
         startDate: "1916-07-01",
@@ -360,6 +375,7 @@ export const campaign: Campaign[] = [
 
   {
     name: "Ypres and Passchendaele Campaign",
+    slug: "",
     startDate: "1917-07-31",
     endDate: "1917-11-10",
     sides: [
@@ -380,6 +396,7 @@ export const campaign: Campaign[] = [
     majorBattles: [
       {
         name: "Third Battle of Ypres (Passchendaele)",
+        slug: "",
         description:
           "A prolonged, rain-soaked offensive marked by heavy artillery and minimal gains, epitomizing the futility of trench warfare.",
         startDate: "1917-07-31",
@@ -390,6 +407,7 @@ export const campaign: Campaign[] = [
 
   {
     name: "German Spring Offensive",
+    slug: "",
     startDate: "1918-03-21",
     endDate: "1918-07-18",
     sides: [
@@ -410,6 +428,7 @@ export const campaign: Campaign[] = [
     majorBattles: [
       {
         name: "Operation Michael (Battle of the Somme 1918)",
+        slug: "",
         description:
           "Germany’s main thrust against British lines, achieving rapid advances before exhausting its momentum.",
         startDate: "1918-03-21",
@@ -417,6 +436,7 @@ export const campaign: Campaign[] = [
       },
       {
         name: "Battle of Lys",
+        slug: "",
         description:
           "A secondary German offensive targeting British and Portuguese sectors in Flanders, part of the wider spring push.",
         startDate: "1918-04-09",
@@ -427,6 +447,7 @@ export const campaign: Campaign[] = [
 
   {
     name: "Hundred Days Offensive",
+    slug: "",
     startDate: "1918-08-08",
     endDate: "1918-11-11",
     sides: [
@@ -448,6 +469,7 @@ export const campaign: Campaign[] = [
     majorBattles: [
       {
         name: "Battle of Amiens",
+        slug: "",
         description:
           "The opening blow of the Hundred Days, combining tanks, aircraft, and artillery to achieve a stunning Allied breakthrough.",
         startDate: "1918-08-08",
@@ -455,6 +477,7 @@ export const campaign: Campaign[] = [
       },
       {
         name: "Battle of the Hindenburg Line",
+        slug: "",
         description:
           "The final destruction of Germany’s last major defensive line, leading to retreat and collapse.",
         startDate: "1918-09-26",

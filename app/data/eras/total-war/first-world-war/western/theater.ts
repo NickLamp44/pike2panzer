@@ -27,6 +27,7 @@ export const westernFront: Theater = {
       ],
     },
   ],
+  majorBattles: [],
   startDate: "1914-08",
   endDate: "1918-11",
   impact: [
