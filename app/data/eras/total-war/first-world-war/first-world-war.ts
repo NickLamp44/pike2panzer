@@ -45,3 +45,4 @@ export const firstWorldWar: Conflict = {
     "dreadnoughts",
   ],
 };
+export default firstWorldWar;

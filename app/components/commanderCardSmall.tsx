@@ -13,9 +13,10 @@ export function CommanderCardSmall({ commander }: CommanderCardSmallProps) {
     )}`;
 
   return (
-    <div className="flex flex-col items-center gap-2 p-3 rounded-lg border border-border bg-card/50 backdrop-blur-sm hover:bg-card/80 transition-colors">
+    <div className="flex flex-row items-center gap-6 p-2 m-3 rounded-lg border border-border bg-card/50 backdrop-blur-sm hover:bg-card/80 transition-colors">
+      
       {/* Commander portrait */}
-      <div className="relative w-20 h-24 rounded-md overflow-hidden border border-border shadow-md">
+      <div className="relative w-0 h-24 p-6 m-2 rounded-md overflow-hidden border border-border shadow-md">
         <Image
           src={image || "/placeholder.svg"}
           alt={commander.name}
@@ -25,7 +26,7 @@ export function CommanderCardSmall({ commander }: CommanderCardSmallProps) {
       </div>
 
       {/* Commander info */}
-      <div className="text-center space-y-1">
+      <div className="text-center space-y-1 p-2">
         <h4 className="text-sm font-semibold text-foreground leading-tight line-clamp-2">
           {commander.name}
         </h4>

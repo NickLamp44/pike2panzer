@@ -1,14 +1,12 @@
 import type { Side } from "../../../types";
-export const side: Side[] = [
-
-  
+export const sides: Side[] = [
   {
     name: "United Kingdom",
     color: "blue",
     slug: "united-kingdom",
     flag: "/flags/Flag_of_the_United_Kingdom.png",
     dateJoined: "August 4th, 1914",
-    commanders:["king-george-v"],
+    commanders: ["king-george-v", "h-h-asquith", "david-lloyd-george"],
   },
   //  {
   //   name: "France",

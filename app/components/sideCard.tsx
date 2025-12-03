@@ -18,7 +18,7 @@ export function SideCard({ side, commanders = [] }: SideCardProps) {
     flagUrl && (flagUrl.startsWith("/") || flagUrl.startsWith("http"));
 
   return (
-    <div className="relative overflow-hidden rounded-lg border border-border bg-card shadow-lg">
+    <div className="flex relative overflow-hidden rounded-lg border border-border bg-card shadow-lg">
       {/* Flag background with vignette overlay */}
       {isValidFlagUrl && (
         <div className="absolute inset-0">
@@ -26,10 +26,10 @@ export function SideCard({ side, commanders = [] }: SideCardProps) {
             src={flagUrl || "/placeholder.svg"}
             alt={`${side.name} flag`}
             fill
-            className="object-cover opacity-20"
+            className="object-cover"
           />
-          {/* Vignette overlay */}
-          <div className="absolute inset-0 bg-gradient-to-br from-background/95 via-background/85 to-background/80" />
+          
+          <div className="absolute inset-0 bg-gradient-to-br from-background/85 via-background/75 to-background/60" />
         </div>
       )}
 
@@ -54,11 +54,11 @@ export function SideCard({ side, commanders = [] }: SideCardProps) {
 
         {/* Key Commanders */}
         {commanders && commanders.length > 0 && (
-          <div className="space-y-3">
+          <div className="">
             <h4 className="text-lg font-semibold text-foreground">
               Key Commanders
             </h4>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+            <div className="flex grow grid-row-1 md:grid-row-3 lg:grid-row-4 ">
               {commanders.map((commander: Commander) => (
                 <CommanderCardSmall
                   key={commander.slug}

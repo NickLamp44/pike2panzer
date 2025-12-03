@@ -229,10 +229,41 @@ export async function getConflictWithAllData(
       import(`./eras/${eraSlug}/${conflictSlug}/tactics.ts`),
     ]);
 
+    // Get the raw data arrays
+    const allSides =
+      sidesModule.status === "fulfilled" ? sidesModule.value.sides || [] : [];
+    const allCommanders =
+      commandersModule.status === "fulfilled"
+        ? commandersModule.value.commanders || []
+        : [];
+
+    // Resolve side slugs to actual Side objects and match commanders
+    const resolvedSides = conflict.sides
+      ? conflict.sides
+          .map((sideSlug: string) => {
+            const side = allSides.find((s: any) => s.slug === sideSlug);
+            if (!side) return null;
+
+            // Resolve commander slugs to actual Commander objects
+            const resolvedCommanders = side.commanders
+              ? side.commanders
+                  .map((commanderSlug: string) =>
+                    allCommanders.find((c: any) => c.slug === commanderSlug)
+                  )
+                  .filter(Boolean)
+              : [];
+
+            return {
+              ...side,
+              commanders: resolvedCommanders,
+            };
+          })
+          .filter(Boolean)
+      : [];
+
     return {
       ...conflict,
-      sides:
-        sidesModule.status === "fulfilled" ? sidesModule.value.sides || [] : [],
+      sides: resolvedSides,
       commanders:
         commandersModule.status === "fulfilled"
           ? commandersModule.value.commanders || []
@@ -258,6 +289,8 @@ export async function getConflictWithAllData(
     return null;
   }
 }
+
+
 
 // Helper function to dynamically load theater data with all sections
 export async function getTheaterWithAllData(

@@ -10,7 +10,7 @@ export const commanders: Commander[] = [
     nationality: "English",
     dateOfBirth: "June 3rd, 1865",
     dateOfDeath: "January 20th, 1936",
-    image: "eras/total-war/ww1/King_George_1925.jpg",
+    image: "/eras/total-war/ww1/King_George_1925.jpg",
     flag: "/flags/Flag_of_the_United_Kingdom.png",
     description: [
       " King George V was the monarch of the United Kingdom and the British Empire during World War I, guiding his nation through one of the most turbulent periods in its history. A grandson of Queen Victoria, he was known for his sense of duty, discipline, and deep commitment to his soldiers and people.",
@@ -28,7 +28,7 @@ export const commanders: Commander[] = [
     nationality: "English",
     dateOfBirth: "September 12th, 1852",
     dateOfDeath: "February 15th, 1928",
-    image: "",
+    image: "/eras/total-war/ww1/HH-Asquith.webp",
     flag: "/flags/Flag_of_the_United_Kingdom.png",
     description: [" "],
   },
