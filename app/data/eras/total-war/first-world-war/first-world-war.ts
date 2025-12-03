@@ -5,7 +5,7 @@ export const firstWorldWar: Conflict = {
   title: "The Great War",
   startDate: "July 28th, 1914",
   endDate: "November 11th, 1918",
-  cardImage: "/eras/total-war/first-world-war/hero.jpg",
+  cardImage: "/eras/total-war/ww1/hero.jpg",
   cardDescription:
     "Global conflict from 1914-1918 involving most of the world's nations.",
 
@@ -20,26 +20,18 @@ export const firstWorldWar: Conflict = {
   ],
 
   // various alliances
-  sides: [
-    "triple-entente-pre-ww1",
-    "central-powers-pre-ww1",
-    "allied-powers-ww1",
-    "central-powers-ww1",
-  ],
-
-  // slugs of important or notable commanders or rulers
-  commanders: ["king-george-v", "h-h-asquith", "david-lloyd-george"],
+  sides: ["united-kingdom"],
 
   hasTheaters: true,
-  theater: [
+  theaters: [
     "western-front",
-    "eastern-front",
-    "izonzo",
+    // "eastern-front",
+    // "izonzo",
     "war-at-sea",
-    "gallipoli",
-    "middle-east",
-    "africa",
-    "irish",
+    // "gallipoli",
+    // "middle-east",
+    // "africa",
+    // "irish",
   ],
 
   //important weapons tech   renders small cards that tell more information on the subject

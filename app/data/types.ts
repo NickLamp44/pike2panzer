@@ -27,7 +27,7 @@ export interface Conflict {
   impact?: string[]; // slug array for paragraphs regardling the conflict
 
   hasTheaters: boolean;
-  theater?: string[]; // slug array for Theaters involved in the conflict
+  theaters?: string[]; // slug array for Theaters involved in the conflict
 
   commanders?: string[]; // slug array for Major leaders involved in the conflict
 
@@ -122,13 +122,12 @@ export interface MajorBattle {
 
 export interface Side {
   name: string;
+  color: string;
   slug?: string;
-  aliances?: Side[];
   flag?: string;
   description?: string;
   dateJoined?: string;
-  commanders?: Commander[];
-  reason?: string[]; // why the side may have joined the conflict
+  commanders?: string[];
 }
 
 export interface Commander {
@@ -136,7 +135,7 @@ export interface Commander {
   name: string;
 
   rank: string;
-  side?: Side[];
+  side?: string;
   nationality: string;
   dateOfBirth?: string;
   dateOfDeath?: string;
@@ -194,6 +193,7 @@ export interface Weapon {
 }
 
 export interface Paragraph {
+  heading?: string[];
   text: string[];
   images?: Image[];
   videos?: Video[];

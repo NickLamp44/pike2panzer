@@ -8,6 +8,7 @@ interface ContentCardProps {
   href: string;
 }
 
+// Basic content card that can be used to showcase eras, conflicts, theaters & battles
 export function ContentCard({
   title,
   cardImage,

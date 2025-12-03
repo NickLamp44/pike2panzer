@@ -1,6 +1,7 @@
 import { eras } from "../app/data/index";
 import { ContentCard } from "@/app/components/contentCard";
 
+// Main Screen of site showing all eras covered 
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-3">

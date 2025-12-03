@@ -3,7 +3,9 @@ import { getEraBySlug, getEraWithConflicts } from "../../data/index";
 import { ContentCard } from "../../components/contentCard";
 import { CardGrid } from "../../components/cardGrid";
 import { Breadcrumb } from "../../components/breadcrumb";
+import type { Conflict } from "../../data/types";
 
+// Era page showing the conflicts that took place during a specific time frame
 export default async function EraPage({
   params,
 }: {
@@ -24,11 +26,11 @@ export default async function EraPage({
         <Breadcrumb items={[{ label: era.title, href: `/eras/${eraSlug}` }]} />
       </div>
       <CardGrid title={era.title} description={era.description}>
-        {eraData.conflicts?.map((conflict) => (
+        {eraData.conflicts?.map((conflict: Conflict) => (
           <ContentCard
             key={conflict.slug}
             title={conflict.title}
-            imageUrl={conflict.imageUrl}
+            cardImage={conflict.cardImage}
             imageAlt={`${conflict.title} background`}
             href={`/eras/${eraSlug}/${conflict.slug}`}
           />

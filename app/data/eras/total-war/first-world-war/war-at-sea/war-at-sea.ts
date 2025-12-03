@@ -3,30 +3,10 @@ import type { Theater } from "../../../../types";
 export const warAtSea: Theater = {
   slug: "war-at-sea",
   title: "War at Sea",
-  description:
+  cardDescription:
     "The global naval campaign of World War I, fought across the Atlantic, North Sea, Baltic, Mediterranean, and beyond. Dominated by the struggle between the British Royal Navy and the German Imperial Navy, it saw the evolution of submarine warfare, blockades, and the first major clashes of modern battleships.",
-  cardImage: "/eras/total-war/first-world-war/war-at-sea/hero.jpg",
-  sides: [
-    {
-      name: "Allied Powers",
-      aliances: [
-        { name: "United Kingdom", flag: "/flags/uk.png" },
-        { name: "France", flag: "/flags/france.png" },
-        { name: "United States", flag: "/flags/us.png" },
-        { name: "Italy", flag: "/flags/italy.png" },
-        { name: "Japan", flag: "/flags/japan.png" },
-        { name: "Russia", flag: "/flags/russia.png" },
-      ],
-    },
-    {
-      name: "Central Powers",
-      aliances: [
-        { name: "German Empire", flag: "/flags/germany.png" },
-        { name: "Austro-Hungarian Empire", flag: "/flags/austria-hungary.png" },
-        { name: "Ottoman Empire", flag: "/flags/ottoman.png" },
-      ],
-    },
-  ],
+  cardImage: "/eras/total-war/ww1/war-at-sea/hero.jpg",
+  sides: [],
   startDate: "1914-08",
   endDate: "1918-11",
   impact: [

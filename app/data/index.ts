@@ -17,7 +17,7 @@ export async function getConflictData(eraSlug: string, conflictSlug: string) {
     ] = await Promise.allSettled([
       import(`./eras/${eraSlug}/${conflictSlug}/sides.ts`),
       import(`./eras/${eraSlug}/${conflictSlug}/commanders.ts`),
-      import(`./eras/${eraSlug}/${conflictSlug}/weaponsTech.ts`),
+      import(`./eras/${eraSlug}/${conflictSlug}/weaponTech.ts`),
       import(`./eras/${eraSlug}/${conflictSlug}/strategy.ts`),
       import(`./eras/${eraSlug}/${conflictSlug}/tactics.ts`),
     ]);
@@ -75,7 +75,7 @@ export async function getTheaterData(
     ] = await Promise.allSettled([
       import(`./eras/${eraSlug}/${conflictSlug}/${theaterSlug}/sides.ts`),
       import(`./eras/${eraSlug}/${conflictSlug}/${theaterSlug}/commanders.ts`),
-      import(`./eras/${eraSlug}/${conflictSlug}/${theaterSlug}/weaponsTech.ts`),
+      import(`./eras/${eraSlug}/${conflictSlug}/${theaterSlug}/weaponTech.ts`),
       import(`./eras/${eraSlug}/${conflictSlug}/${theaterSlug}/strategy.ts`),
       import(`./eras/${eraSlug}/${conflictSlug}/${theaterSlug}/tactics.ts`),
     ]);
@@ -113,6 +113,46 @@ export async function getTheaterData(
 
 // Static era data (lightweight, can be imported directly)
 export const eras: Era[] = [
+  {
+    slug: "late-medieval",
+    title: "Late Medieval",
+    cardDescription: "The transition from medieval to early modern warfare.",
+    description: "The transition from medieval to early modern warfare.",
+    cardImage: "/eras/late-medieval/hero.jpg",
+    period: "1200-1500",
+  },
+  {
+    slug: "rise-of-gunpowder",
+    title: "Rise of Gunpowder",
+    cardDescription: "The transition from medieval to early modern warfare.",
+    description: "The introduction of gunpowder weapons transformed warfare.",
+    cardImage: "/eras/rise-of-gun-powder/hero.jpg",
+    period: "1500-1700",
+  },
+  {
+    slug: "revolutionary-imperial",
+    title: "Revolutionary & Imperial Wars",
+    cardDescription: "The transition from medieval to early modern warfare.",
+    description: "Wars of revolution and empire building.",
+    cardImage: "/eras/revolutionary-imperial/hero.jpg",
+    period: "1700-1850",
+  },
+  {
+    slug: "dawn-industrial-warfare",
+    title: "Dawn of Industrial Warfare",
+    cardDescription: "The transition from medieval to early modern warfare.",
+    description: "Industrial revolution transforms military technology.",
+    cardImage: "/eras/industrial-warfare/hero.jpg",
+    period: "1850-1914",
+  },
+  {
+    slug: "post-war",
+    title: "Cold War",
+    cardDescription: "The transition from medieval to early modern warfare.",
+    description: "Conflicts during the Cold War era.",
+    cardImage: "/eras/cold-war/hero.jpg",
+    period: "1945-1991",
+  },
   {
     slug: "total-war",
     title: "Total War",
