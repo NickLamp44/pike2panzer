@@ -20,7 +20,12 @@ export const firstWorldWar: Conflict = {
   ],
 
   // various alliances
-  sides: ["united-kingdom"],
+  sides: [
+    "united-kingdom",
+    "french-republic",
+    "russian-empire",
+    "german-empire",
+  ],
 
   hasTheaters: true,
   theaters: [

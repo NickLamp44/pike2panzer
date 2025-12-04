@@ -116,9 +116,9 @@ export default async function ConflictPage({
       )}
 
       {conflictData.sides && conflictData.sides.length > 0 && (
-        <section className="mb-8">
+        <section className="flex mb-8">
           <h2 className="text-2xl font-semibold mb-4">Major Factions</h2>
-          <div className="grid gap-6">
+          <div className="flex grow grid gap-6">
             <CardGrid>
               {conflictData.sides.map((side: Side, index: number) => (
                 <SideCard

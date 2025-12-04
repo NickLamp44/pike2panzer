@@ -203,93 +203,74 @@ export async function getEraWithConflicts(eraSlug: string) {
 }
 
 // Helper function to dynamically load conflict data with all sections
-export async function getConflictWithAllData(
-  eraSlug: string,
-  conflictSlug: string
-) {
+export async function getConflictWithAllData(eraSlug: string, conflictSlug: string) {
   try {
-    const conflictModule = await import(
-      `./eras/${eraSlug}/${conflictSlug}/${conflictSlug}.ts`
-    );
-    const conflict =
-      conflictModule.default || conflictModule[Object.keys(conflictModule)[0]];
+    const conflictModule = await import(`./eras/${eraSlug}/${conflictSlug}/${conflictSlug}.ts`)
+    const conflict = conflictModule.default || conflictModule[Object.keys(conflictModule)[0]]
 
     // Try to load optional files (some conflicts may not have all sections)
-    const [
-      sidesModule,
-      commandersModule,
-      weaponsModule,
-      strategyModule,
-      tacticsModule,
-    ] = await Promise.allSettled([
+    const [sidesModule, commandersModule, weaponsModule, strategyModule, tacticsModule] = await Promise.allSettled([
       import(`./eras/${eraSlug}/${conflictSlug}/sides.ts`),
       import(`./eras/${eraSlug}/${conflictSlug}/commanders.ts`),
       import(`./eras/${eraSlug}/${conflictSlug}/weapons.ts`),
       import(`./eras/${eraSlug}/${conflictSlug}/strategy.ts`),
       import(`./eras/${eraSlug}/${conflictSlug}/tactics.ts`),
-    ]);
+    ])
 
     // Get the raw data arrays
-    const allSides =
-      sidesModule.status === "fulfilled" ? sidesModule.value.sides || [] : [];
-    const allCommanders =
-      commandersModule.status === "fulfilled"
-        ? commandersModule.value.commanders || []
-        : [];
+    const allSides = sidesModule.status === "fulfilled" ? sidesModule.value.sides || [] : []
+    const allCommanders = commandersModule.status === "fulfilled" ? commandersModule.value.commanders || [] : []
 
     // Resolve side slugs to actual Side objects and match commanders
     const resolvedSides = conflict.sides
       ? conflict.sides
           .map((sideSlug: string) => {
-            const side = allSides.find((s: any) => s.slug === sideSlug);
-            if (!side) return null;
+            const side = allSides.find((s: any) => s.slug === sideSlug)
+            if (!side) return null
 
             // Resolve commander slugs to actual Commander objects
             const resolvedCommanders = side.commanders
               ? side.commanders
-                  .map((commanderSlug: string) =>
-                    allCommanders.find((c: any) => c.slug === commanderSlug)
-                  )
+                  .map((commanderSlug: string) => allCommanders.find((c: any) => c.slug === commanderSlug))
                   .filter(Boolean)
-              : [];
+              : []
 
             return {
               ...side,
               commanders: resolvedCommanders,
-            };
+            }
           })
           .filter(Boolean)
-      : [];
+      : []
+
+    const resolvedTheaters = conflict.theaters
+      ? await Promise.all(
+          conflict.theaters.map(async (theaterSlug: string) => {
+            try {
+              const theaterModule = await import(`./eras/${eraSlug}/${conflictSlug}/${theaterSlug}/${theaterSlug}.ts`)
+              return theaterModule.default || theaterModule[Object.keys(theaterModule)[0]]
+            } catch (error) {
+              console.error(`Failed to load theater ${theaterSlug} for ${conflictSlug}:`, error)
+              return null
+            }
+          }),
+        ).then((theaters) => theaters.filter(Boolean))
+      : []
 
     return {
       ...conflict,
       sides: resolvedSides,
-      commanders:
-        commandersModule.status === "fulfilled"
-          ? commandersModule.value.commanders || []
-          : [],
-      weapons:
-        weaponsModule.status === "fulfilled"
-          ? weaponsModule.value.weapons || []
-          : [],
-      strategy:
-        strategyModule.status === "fulfilled"
-          ? strategyModule.value.strategy || []
-          : [],
-      tactics:
-        tacticsModule.status === "fulfilled"
-          ? tacticsModule.value.tactics || []
-          : [],
-    };
+      theaters: resolvedTheaters, // Now returning full Theater objects instead of slugs
+      commanders: commandersModule.status === "fulfilled" ? commandersModule.value.commanders || [] : [],
+      weapons: weaponsModule.status === "fulfilled" ? weaponsModule.value.weapons || [] : [],
+      strategy: strategyModule.status === "fulfilled" ? strategyModule.value.strategy || [] : [],
+      tactics: tacticsModule.status === "fulfilled" ? tacticsModule.value.tactics || [] : [],
+    }
   } catch (error) {
-    console.error(
-      `Failed to load conflict data for ${eraSlug}/${conflictSlug}:`,
-      error
-    );
-    return null;
+    console.error(`Failed to load conflict data for ${eraSlug}/${conflictSlug}:`, error)
+    return null
   }
 }
-
 
 
 // Helper function to dynamically load theater data with all sections
