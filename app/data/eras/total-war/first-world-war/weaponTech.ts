@@ -1,20 +1,20 @@
 import type { WeaponTech } from "../../../types";
 
-export const weaponsTech: WeaponTech[] = [
+export const weaponTech: WeaponTech[] = [
   // Machine Gun
-  {
-    name: "Machine Gun",
-    slug: "machine-gun",
-    image: "/eras/total-war/ww1/western-front/World-War-I-Machine-guns.jpg",
-    type: "Infantry Weapon",
-    description: [
-      "The machine gun was one of the most defining and devastating weapons of the First World War. Capable of firing hundreds of rounds per minute, it transformed the battlefield from one of mobility to one of attrition. Originally viewed as a defensive weapon, the machine gun quickly became the cornerstone of trench warfare, where small crews could halt entire waves of advancing infantry with sustained, automatic fire. Both the Allied and Central Powers deployed machine guns on every front—from the muddy trenches of the Western Front to the deserts of the Middle East and the frozen plains of the Eastern Front. These weapons made frontal assaults nearly suicidal and led to the development of new tactics, such as creeping barrages, tank assaults, and infiltration warfare.",
-    ],
+  // {
+  //   name: "Machine Gun",
+  //   slug: "machine-gun",
+  //   image: "/eras/total-war/ww1/western-front/World-War-I-Machine-guns.jpg",
+  //   type: "Infantry Weapon",
+  //   description: [
+  //     "The machine gun was one of the most defining and devastating weapons of the First World War. Capable of firing hundreds of rounds per minute, it transformed the battlefield from one of mobility to one of attrition. Originally viewed as a defensive weapon, the machine gun quickly became the cornerstone of trench warfare, where small crews could halt entire waves of advancing infantry with sustained, automatic fire. Both the Allied and Central Powers deployed machine guns on every front—from the muddy trenches of the Western Front to the deserts of the Middle East and the frozen plains of the Eastern Front. These weapons made frontal assaults nearly suicidal and led to the development of new tactics, such as creeping barrages, tank assaults, and infiltration warfare.",
+  //   ],
 
-    impact: [
-      "Machine guns dominated no-man’s-land and turned mass infantry charges into slaughter. Their use forced armies to dig in, sparking the creation of extensive trench systems stretching from the North Sea to Switzerland. The stalemate they created pushed innovation in artillery, tanks, and aircraft to overcome their lethal firepower. By war’s end, the machine gun had cemented itself as the king of the battlefield—forever changing military tactics and marking the dawn of modern warfare.",
-    ],
-  },
+  //   impact: [
+  //     "Machine guns dominated no-man’s-land and turned mass infantry charges into slaughter. Their use forced armies to dig in, sparking the creation of extensive trench systems stretching from the North Sea to Switzerland. The stalemate they created pushed innovation in artillery, tanks, and aircraft to overcome their lethal firepower. By war’s end, the machine gun had cemented itself as the king of the battlefield—forever changing military tactics and marking the dawn of modern warfare.",
+  //   ],
+  // },
   // Tank
   {
     name: "Tank",

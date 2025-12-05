@@ -4,7 +4,7 @@ import { ContentCard } from "../../../components/contentCard";
 import { CardGrid } from "../../../components/cardGrid";
 import { SideCard } from "../../../components/sideCard";
 import { Breadcrumb } from "../../../components/breadcrumb";
-import type { Theater, Side } from "../../../data/types";
+import type { Theater, Side, Campaign, WeaponTech } from "../../../data/types";
 
 export default async function ConflictPage({
   params,
@@ -53,7 +53,7 @@ export default async function ConflictPage({
         </div>
 
         <section className="mb-6">
-          <h2 className="text-2xl font-semibold mb-4">Major Factions</h2>
+          <h2 className="text-2xl font-semibold mb-4">Factions at War</h2>
           <div className="grid gap-6">
             <CardGrid>
               {conflictData.sides.map((side: Side, index: number) => (
@@ -80,6 +80,48 @@ export default async function ConflictPage({
                   href={`/eras/${eraSlug}/${conflictSlug}/${theater.slug}`}
                 />
               ))}
+            </CardGrid>
+          </div>
+        </section>
+
+        <section className="mb-8">
+          <h2 className="text-2xl font-semibold mb-4">
+            Key Campaigns & Battles{" "}
+          </h2>
+          <div className="grid gap-6">
+            <CardGrid>
+              {conflictData.campaigns.map(
+                (campaign: Campaign, index: number) => (
+                  <ContentCard
+                    key={campaign.slug || index}
+                    title={campaign.title}
+                    cardImage={campaign.cardImage}
+                    imageAlt={`${campaign.title} background`}
+                    href={`/eras/${eraSlug}/${conflictSlug}/${campaign.slug}`}
+                  />
+                )
+              )}
+            </CardGrid>
+          </div>
+        </section>
+
+        <section className="mb-8">
+          <h2 className="text-2xl font-semibold mb-4">
+            Important Weapon Tech{" "}
+          </h2>
+          <div className="grid gap-6">
+            <CardGrid>
+              {conflictData.weaponTech.map(
+                (weaponTech: WeaponTech, index: number) => (
+                  <ContentCard
+                    key={weaponTech.slug || index}
+                    title={weaponTech.name}
+                    cardImage={weaponTech.image}
+                    imageAlt={`${weaponTech.name} background`}
+                    href={`/eras/${eraSlug}/${conflictSlug}/${weaponTech.slug}`}
+                  />
+                )
+              )}
             </CardGrid>
           </div>
         </section>

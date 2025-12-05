@@ -72,7 +72,7 @@ export interface Theater {
 }
 
 export interface Campaign {
-  name: string;
+  title: string;
   slug: string;
   startDate: string;
   endDate: string;
