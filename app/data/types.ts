@@ -52,9 +52,9 @@ export interface Theater {
   cardImage: string;
   cardDescription: string; // short paragraph for when a user hovers over a card
 
-  impact?: string[]; // slug array for paragraphs regardling the theater
-
   sides: string[]; // slug array for alliances/countries/factions involved in the theater
+
+  impact?: string[]; // slug array for paragraphs regardling the theater
 
   commanders?: string[]; // slug array for Major leaders involved in the theater
 
@@ -78,10 +78,9 @@ export interface Campaign {
   endDate: string;
   cardImage: string;
   cardDescription: string; // short paragraph for when a user hovers over a card
+  sides: string[]; // slug array for alliances/countries/factions involved in the campaign
 
   impact?: string[]; // slug array for paragraphs regardling the campaign
-
-  sides: string[]; // slug array for alliances/countries/factions involved in the campaign
 
   commanders?: string[]; // slug array for Major leaders involved in the campaign
 
@@ -97,7 +96,8 @@ export interface Campaign {
 }
 
 export interface MajorBattle {
-  name: string;
+  title: string;
+  cardImage: string;
   slug?: string;
   startDate?: string;
   endDate?: string;

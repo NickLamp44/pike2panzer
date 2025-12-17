@@ -38,8 +38,7 @@ export const firstWorldWar: Conflict = {
     // "africa",
     // "irish",
   ],
-  campaigns: ["first-battle-marne", "race-to-sea"],
-  majorBattles: [],
+  
 
   //important weapons tech   renders small cards that tell more information on the subject
   weaponTech: [

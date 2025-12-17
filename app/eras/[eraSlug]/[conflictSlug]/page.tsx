@@ -3,6 +3,7 @@ import { getConflictWithAllData, getEraBySlug } from "../../../data/index";
 import { ContentCard } from "../../../components/contentCard";
 import { CardGrid } from "../../../components/cardGrid";
 import { SideCard } from "../../../components/sideCard";
+import { WeaponTechCard } from "../../../components/weaponTechCard";
 import { Breadcrumb } from "../../../components/breadcrumb";
 import type { Theater, Side, Campaign, WeaponTech } from "../../../data/types";
 
@@ -113,12 +114,9 @@ export default async function ConflictPage({
             <CardGrid>
               {conflictData.weaponTech.map(
                 (weaponTech: WeaponTech, index: number) => (
-                  <ContentCard
+                  <WeaponTechCard
                     key={weaponTech.slug || index}
-                    title={weaponTech.name}
-                    cardImage={weaponTech.image}
-                    imageAlt={`${weaponTech.name} background`}
-                    href={`/eras/${eraSlug}/${conflictSlug}/${weaponTech.slug}`}
+                    weapon={weaponTech}
                   />
                 )
               )}
@@ -169,6 +167,24 @@ export default async function ConflictPage({
                   commanders={side.commanders}
                 />
               ))}
+            </CardGrid>
+          </div>
+        </section>
+      )}
+
+      {conflictData.weaponTech && conflictData.weaponTech.length > 0 && (
+        <section className="mb-8">
+          <h2 className="text-2xl font-semibold mb-4">Important Weapon Tech</h2>
+          <div className="grid gap-6">
+            <CardGrid>
+              {conflictData.weaponTech.map(
+                (weaponTech: WeaponTech, index: number) => (
+                  <WeaponTechCard
+                    key={weaponTech.slug || index}
+                    weapon={weaponTech}
+                  />
+                )
+              )}
             </CardGrid>
           </div>
         </section>
