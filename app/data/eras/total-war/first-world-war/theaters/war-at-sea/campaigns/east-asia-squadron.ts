@@ -15,4 +15,5 @@ export const eastAsiaSquadron: Campaign = {
     "battle-of-Mas-a-Tierra",
     "battle-of-cocos",
   ],
+  
 };

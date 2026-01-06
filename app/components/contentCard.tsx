@@ -4,6 +4,8 @@ import Link from "next/link";
 interface ContentCardProps {
   title: string;
   cardImage: string;
+  startDate?: string;
+  endDate?: string;
   imageAlt?: string;
   href: string;
 }
@@ -12,6 +14,8 @@ interface ContentCardProps {
 export function ContentCard({
   title,
   cardImage,
+  startDate,
+  endDate,
   imageAlt = "Background image",
   href,
 }: ContentCardProps) {
@@ -31,17 +35,31 @@ export function ContentCard({
 
         {/* Content */}
         <div className="relative h-full flex items-center justify-center px-8">
-          <div className="flex items-center gap-4">
-            {/* Left Bar Icon */}
-            <Menu className="w-6 h-6 text-white" />
+          <div className="flex flex-col items-center gap-3">
+            <div className="flex items-center gap-4">
+              {/* Left Bar Icon */}
+              <Menu className="w-6 h-6 text-white" />
 
-            {/* Title */}
-            <h3 className="text-2xl md:text-3xl font-bold text-white text-center">
-              {title}
-            </h3>
+              {/* Title */}
+              <h3 className="text-2xl md:text-3xl font-bold text-white text-center">
+                {title}
+              </h3>
 
-            {/* Right Bar Icon */}
-            <Menu className="w-6 h-6 text-white" />
+              {/* Right Bar Icon */}
+              <Menu className="w-6 h-6 text-white" />
+            </div>
+
+            <div className="flex items-center gap-2">
+              {/* Start Date */}
+              <h5 className="text-lg md:text-xl text-white text-center italic">
+                {startDate}
+              </h5>
+              <span className="text-white">-</span>
+              {/* End Date */}
+              <h5 className="text-lg md:text-xl text-white text-center italic">
+                {endDate}
+              </h5>
+            </div>
           </div>
         </div>
       </div>

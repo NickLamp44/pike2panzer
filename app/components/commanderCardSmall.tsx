@@ -1,4 +1,3 @@
-import Image from "next/image";
 import type { Commander } from "../data/types";
 
 interface CommanderCardSmallProps {

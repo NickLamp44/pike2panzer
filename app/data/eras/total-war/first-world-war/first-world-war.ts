@@ -20,6 +20,7 @@ export const firstWorldWar: Conflict = {
   ],
 
   // various alliances
+  // pre & post alliances mainly (tripent,cent) ->(allied,central)
   sides: [
     "united-kingdom",
     "french-republic",

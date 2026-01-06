@@ -31,6 +31,8 @@ export default async function EraPage({
             key={conflict.slug}
             title={conflict.title}
             cardImage={conflict.cardImage}
+            startDate={conflict.startDate}
+            endDate = {conflict.endDate}
             imageAlt={`${conflict.title} background`}
             href={`/eras/${eraSlug}/${conflict.slug}`}
           />

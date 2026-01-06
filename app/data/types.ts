@@ -24,7 +24,17 @@ export interface Conflict {
 
   intro?: Paragraph[]; //  array for paragraphs regardling the lead up to war and the global/social/econimical factors at play
 
-  impact?: string[]; // slug array for paragraphs regardling the conflict
+  firstAct?: Paragraph[]; // array for paragraphs regarding the opening actions of the conflict
+
+  section?: Section[]; 
+
+  tactics?: string[]; // slug array for new tactics developed or used in the conflict
+
+  strategies?: string[]; // slug array to new strategies developed or used in the conflict
+
+  weaponTech?: string[]; // slug array for revolutionary weapons & technology that changed how conflict was fought
+
+  weapons?: string[]; // slug array for specific weapons widely used during the conflict
 
   hasTheaters: boolean;
   theaters?: string[]; // slug array for Theaters involved in the conflict
@@ -35,13 +45,7 @@ export interface Conflict {
 
   majorBattles?: string[]; // slug array of Major battles that occured during the conflict
 
-  tactics?: string[]; // slug array for new tactics developed or used in the conflict
-
-  strategies?: string[]; // slug array to new strategies developed or used in the conflict
-
-  weaponTech?: string[]; // slug array for revolutionary weapons & technology that changed how conflict was fought
-
-  weapons?: string[]; // slug array for specific weapons widely used during the conflict
+  impact?: string[]; // slug array for paragraphs regardling the conflict
 }
 
 export interface Theater {
@@ -136,7 +140,7 @@ export interface Commander {
 
   rank: string;
   side?: string;
-  nationality: string;
+  nationality: string; // if known thier place of birth
   dateOfBirth?: string;
   dateOfDeath?: string;
   image?: string;
@@ -193,8 +197,18 @@ export interface Weapon {
 }
 
 export interface Paragraph {
-  heading?: string[];
+  heading?: string;
+  subheading?: string;
   text: string[];
+  images?: Image[];
+  videos?: Video[];
+}
+
+export interface Section {
+  title: string;
+  slug: string;
+  subHeading: string;
+  text: Paragraph[];
   images?: Image[];
   videos?: Video[];
 }
