@@ -6,8 +6,7 @@ export const majorBattles: MajorBattle[] = [
     name: "",
     startDate: "",
     endDate: "",
-    description:
-      "",
+    description: "",
     sides: [
       {
         name: "",
@@ -33,11 +32,9 @@ export const majorBattles: MajorBattle[] = [
         ],
       },
     ],
-    impact: [
-      "",
-    ],
+    impact: [""],
   },
-]
+];
 
 export const campaign: Campaign[] = [
   {
@@ -57,17 +54,14 @@ export const campaign: Campaign[] = [
         name: "",
       },
     ],
-    description:
-      "",
+    description: "",
     majorBattles: [
       {
         name: "",
-        description:
-          "",
+        description: "",
         startDate: "",
         endDate: "",
       },
-      
     ],
   },
-]
+];

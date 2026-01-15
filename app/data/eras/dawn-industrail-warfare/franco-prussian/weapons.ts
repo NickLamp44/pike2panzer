@@ -1,13 +1,10 @@
 import type { Weapon } from "../../../types";
 
 export const weapons: Weapon[] = [
-  
   {
     name: "",
     type: "",
-    description: [
-      "",
-    ],
+    description: [""],
     side: [
       {
         name: "",
@@ -26,4 +23,5 @@ export const weapons: Weapon[] = [
         source: " ",
       },
     ],
-  },]
+  },
+];

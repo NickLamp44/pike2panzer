@@ -10,7 +10,7 @@ export function NavBar() {
           className="flex items-center gap-2 hover:opacity-80 transition-opacity"
         >
           <Menu className="h-6 w-6" />
-          <span className="text-xl font-semibold">Military History</span>
+          <span className="text-xl font-semibold">Pike to Panzer</span>
         </Link>
 
         <div className="flex items-center gap-6">

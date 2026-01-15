@@ -22,11 +22,9 @@ export interface Conflict {
 
   sides: string[]; // slug array for alliances/countries/factions involved in the conflict
 
-  intro?: Paragraph[]; //  array for paragraphs regardling the lead up to war and the global/social/econimical factors at play
+  intro?: Paragraph[]; //  array for paragraphs regarding the lead up to war and the global/social/economic factors at play
 
-  firstAct?: Paragraph[]; // array for paragraphs regarding the opening actions of the conflict
-
-  section?: Section[]; 
+  section?: Section[];
 
   tactics?: string[]; // slug array for new tactics developed or used in the conflict
 
@@ -43,9 +41,9 @@ export interface Conflict {
 
   campaigns?: string[]; // slug array for Major campaigns involved in the conflict
 
-  majorBattles?: string[]; // slug array of Major battles that occured during the conflict
+  majorBattles?: string[]; // slug array of Major battles that occurred during the conflict
 
-  impact?: string[]; // slug array for paragraphs regardling the conflict
+  impact?: string[]; // slug array for paragraphs regarding the conflict
 }
 
 export interface Theater {
@@ -58,13 +56,13 @@ export interface Theater {
 
   sides: string[]; // slug array for alliances/countries/factions involved in the theater
 
-  impact?: string[]; // slug array for paragraphs regardling the theater
+  impact?: string[]; // slug array for paragraphs regarding the theater
 
   commanders?: string[]; // slug array for Major leaders involved in the theater
 
   campaigns?: string[]; // slug array for Major campaigns involved in the theater
 
-  majorBattles?: string[]; // slug array of Major battles that occured during the theater
+  majorBattles?: string[]; // slug array of Major battles that occurred during the theater
 
   tactics?: string[]; // slug array for new tactics developed or used in the theater
 
@@ -84,11 +82,11 @@ export interface Campaign {
   cardDescription: string; // short paragraph for when a user hovers over a card
   sides: string[]; // slug array for alliances/countries/factions involved in the campaign
 
-  impact?: string[]; // slug array for paragraphs regardling the campaign
+  impact?: string[]; // slug array for paragraphs regarding the campaign
 
   commanders?: string[]; // slug array for Major leaders involved in the campaign
 
-  majorBattles?: string[]; // slug array of Major battles that occured during the campaign
+  majorBattles?: string[]; // slug array of Major battles that occurred during the campaign
 
   tactics?: string[]; // slug array for new tactics developed or used in the campaign
 
@@ -109,7 +107,7 @@ export interface MajorBattle {
 
   description?: string;
 
-  impact?: string[]; // slug array for paragraphs regardling the Battle
+  impact?: string[]; // slug array for paragraphs regarding the Battle
 
   sides?: string[]; // slug array for alliances/countries/factions involved in the Battle
 
@@ -139,8 +137,8 @@ export interface Commander {
   name: string;
 
   rank: string;
-  side?: string;
-  nationality: string; // if known thier place of birth
+  faction?: string[];
+  nationality: string; // if known their place of birth
   dateOfBirth?: string;
   dateOfDeath?: string;
   image?: string;
@@ -164,7 +162,7 @@ export interface Award {
 export interface Strategy {
   name: string;
   description?: string[];
-  side?: string;
+  faction?: string;
   tactics?: Tactic[];
 }
 
@@ -172,7 +170,7 @@ export interface Tactic {
   name: string;
   description?: string[];
   weapons?: Weapon[];
-  side?: Side[];
+  usedBy?: Side[];
 }
 
 export interface WeaponTech {
@@ -192,23 +190,24 @@ export interface Weapon {
   cardDescription: string; // short paragraph for when a user hovers over a card
   type?: string;
   description?: string[];
-  side?: Side[];
+  usedBy?: Side[];
   images: Image[];
 }
 
 export interface Paragraph {
   heading?: string;
-  subheading?: string;
-  text: string[];
+  subHeading?: string;
+  section?: Paragraph[];
+  text?: string[];
   images?: Image[];
   videos?: Video[];
 }
 
 export interface Section {
-  title: string;
-  slug: string;
-  subHeading: string;
-  text: Paragraph[];
+  heading?: string;
+  subHeading?: string;
+  text?: Paragraph[];
+  section?: Section[];
   images?: Image[];
   videos?: Video[];
 }

@@ -1,27 +1,27 @@
-import Image from "next/image"
-import { CommanderCardSmall } from "./commanderCardSmall"
-import type { Side, Commander } from "../data/types"
+import Image from "next/image";
+import { CommanderCardSmall } from "./commanderCardSmall";
+import type { Side, Commander } from "../data/types";
 
 interface SideCardProps {
-  side: Side
-  commanders?: Commander[]
+  side: Side;
+  commanders?: Commander[];
 }
 
 export function SideCard({ side, commanders = [] }: SideCardProps) {
-  if (!side) return null
+  if (!side) return null;
 
   const flagUrl =
     side.flag ||
     `/placeholder.svg?height=400&width=600&query=${encodeURIComponent(
       side.name + " flag"
-    )}`
+    )}`;
 
   return (
     <div className="relative rounded-xl border border-border bg-card shadow-xl overflow-hidden max-w-2xl w-full">
       {/* Background flag */}
       <div className="absolute inset-0">
         <Image
-          src={flagUrl}
+          src={flagUrl || "/placeholder.svg"}
           alt={`${side.name} flag`}
           fill
           className="object-cover object-center opacity-60"
@@ -64,5 +64,5 @@ export function SideCard({ side, commanders = [] }: SideCardProps) {
         )}
       </div>
     </div>
-  )
+  );
 }

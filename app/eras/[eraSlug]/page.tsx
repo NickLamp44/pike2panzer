@@ -32,7 +32,7 @@ export default async function EraPage({
             title={conflict.title}
             cardImage={conflict.cardImage}
             startDate={conflict.startDate}
-            endDate = {conflict.endDate}
+            endDate={conflict.endDate}
             imageAlt={`${conflict.title} background`}
             href={`/eras/${eraSlug}/${conflict.slug}`}
           />

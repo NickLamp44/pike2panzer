@@ -4,7 +4,7 @@ import type { Era, Conflict } from "./types";
 export async function getConflictData(eraSlug: string, conflictSlug: string) {
   try {
     const conflictModule = await import(
-      `./eras/${eraSlug}/${conflictSlug}/${conflictSlug}.ts`
+      `./eras/${eraSlug}/${conflictSlug}/${conflictSlug}`
     );
 
     // Load optional files - some may not exist yet
@@ -15,14 +15,13 @@ export async function getConflictData(eraSlug: string, conflictSlug: string) {
       strategyModule,
       tacticsModule,
       campaignsModule,
-      
     ] = await Promise.allSettled([
-      import(`./eras/${eraSlug}/${conflictSlug}/sides.ts`),
-      import(`./eras/${eraSlug}/${conflictSlug}/commanders.ts`),
-      import(`./eras/${eraSlug}/${conflictSlug}/weaponTech.ts`),
-      import(`./eras/${eraSlug}/${conflictSlug}/strategy.ts`),
-      import(`./eras/${eraSlug}/${conflictSlug}/tactics.ts`),
-      import(`./eras/${eraSlug}/${conflictSlug}/campaigns.ts`),
+      import(`./eras/${eraSlug}/${conflictSlug}/sides`),
+      import(`./eras/${eraSlug}/${conflictSlug}/commanders`),
+      import(`./eras/${eraSlug}/${conflictSlug}/weaponTech`),
+      import(`./eras/${eraSlug}/${conflictSlug}/strategy`),
+      import(`./eras/${eraSlug}/${conflictSlug}/tactics`),
+      import(`./eras/${eraSlug}/${conflictSlug}/campaigns`),
     ]);
 
     return {
@@ -75,7 +74,7 @@ export async function getTheaterData(
 ) {
   try {
     const theaterModule = await import(
-      `./eras/${eraSlug}/${conflictSlug}/${theaterSlug}/${theaterSlug}.ts`
+      `./eras/${eraSlug}/${conflictSlug}/${theaterSlug}/${theaterSlug}`
     );
 
     // Load optional files - some may not exist yet
@@ -85,14 +84,12 @@ export async function getTheaterData(
       weaponsModule,
       strategyModule,
       tacticsModule,
-      campaignsModule,
     ] = await Promise.allSettled([
-      import(`./eras/${eraSlug}/${conflictSlug}/${theaterSlug}/sides.ts`),
-      import(`./eras/${eraSlug}/${conflictSlug}/${theaterSlug}/commanders.ts`),
-      import(`./eras/${eraSlug}/${conflictSlug}/${theaterSlug}/weaponTech.ts`),
-      import(`./eras/${eraSlug}/${conflictSlug}/${theaterSlug}/strategy.ts`),
-      import(`./eras/${eraSlug}/${conflictSlug}/${theaterSlug}/tactics.ts`),
-      import(`./eras/${eraSlug}/${conflictSlug}/campaigns.ts`),
+      import(`./eras/${eraSlug}/${conflictSlug}/${theaterSlug}/sides`),
+      import(`./eras/${eraSlug}/${conflictSlug}/${theaterSlug}/commanders`),
+      import(`./eras/${eraSlug}/${conflictSlug}/${theaterSlug}/weapons`),
+      import(`./eras/${eraSlug}/${conflictSlug}/${theaterSlug}/strategy`),
+      import(`./eras/${eraSlug}/${conflictSlug}/${theaterSlug}/tactics`),
     ]);
 
     return {
@@ -104,9 +101,9 @@ export async function getTheaterData(
         commandersModule.status === "fulfilled"
           ? commandersModule.value.commanders || []
           : [],
-      weaponTech:
+      weapons:
         weaponsModule.status === "fulfilled"
-          ? weaponsModule.value.weaponTech || []
+          ? weaponsModule.value.weapons || []
           : [],
       strategy:
         strategyModule.status === "fulfilled"
@@ -115,10 +112,6 @@ export async function getTheaterData(
       tactics:
         tacticsModule.status === "fulfilled"
           ? tacticsModule.value.tactics || []
-          : [],
-      campaigns:
-        campaignsModule.status === "fulfilled"
-          ? campaignsModule.value.campaigns || []
           : [],
     };
   } catch (error) {
@@ -179,6 +172,7 @@ export const eras: Era[] = [
     description: "The world wars that mobilized entire nations.",
     cardImage: "/eras/total-war/hero.jpg",
     period: "1914-1945",
+    conflicts: ["first-world-war", "second-world-war"],
   },
 ];
 
@@ -189,88 +183,98 @@ export function getEraBySlug(slug: string): Era | undefined {
 
 // Helper to get list of conflicts for an era (reads from filesystem)
 export async function getConflictsForEra(eraSlug: string): Promise<Conflict[]> {
-  // This would need to be populated based on your actual folder structure
-  // For now, return empty array - you'll populate this as you add conflicts
-  return [];
+  const conflictSlugs = await getConflictSlugsForEra(eraSlug);
+  const conflicts = await Promise.all(
+    conflictSlugs.map(async (slug) => {
+      try {
+        const conflictModule = await import(
+          `./eras/${eraSlug}/${slug}/${slug}`
+        );
+        return conflictModule.secondWorldWar || conflictModule.conflict;
+      } catch (error) {
+        console.error(`Failed to load conflict ${slug}:`, error);
+        return null;
+      }
+    })
+  );
+  return conflicts.filter(Boolean) as Conflict[];
 }
 
-// Helper function to dynamically load era data with conflicts
 export async function getEraWithConflicts(eraSlug: string) {
-  try {
-    const eraModule = await import(`./eras/${eraSlug}/${eraSlug}.ts`);
-    const era = eraModule.default || eraModule[Object.keys(eraModule)[0]];
+  const era = getEraBySlug(eraSlug);
 
-    // Get list of conflicts by scanning the folder
-    const conflictSlugs = await getConflictSlugsForEra(eraSlug);
-    const conflicts = await Promise.all(
-      conflictSlugs.map(async (slug) => {
-        const conflictModule = await import(
-          `./eras/${eraSlug}/${slug}/${slug}.ts`
-        );
-        return (
-          conflictModule.default ||
-          conflictModule[Object.keys(conflictModule)[0]]
-        );
-      })
-    );
-
-    return { ...era, conflicts };
-  } catch (error) {
-    console.error(`Failed to load era data for ${eraSlug}:`, error);
+  if (!era) {
+    console.error(`Era not found: ${eraSlug}`);
     return null;
+  }
+
+  try {
+    // Dynamically load conflicts for this era
+    const conflictModule = await import(`./eras/${eraSlug}/conflicts`);
+    const conflictArray = Object.values(conflictModule.conflicts);
+    return {
+      ...era,
+      conflicts: conflictArray,
+    };
+  } catch (error) {
+    console.error(`Failed to load conflicts for era ${eraSlug}:`, error);
+    return { ...era, conflicts: [] };
   }
 }
 
-// Helper function to dynamically load conflict data with all sections
 export async function getConflictWithAllData(
   eraSlug: string,
   conflictSlug: string
 ) {
   try {
-    const conflictModule = await import(
-      `./eras/${eraSlug}/${conflictSlug}/${conflictSlug}.ts`
-    );
-    const conflict =
-      conflictModule.default || conflictModule[Object.keys(conflictModule)[0]];
+    // Load conflict for any era dynamically
+    const { conflicts } = await import(`./eras/${eraSlug}/conflicts`);
+    const conflict = conflicts[conflictSlug as keyof typeof conflicts];
 
-    // Try to load optional files (some conflicts may not have all sections)
-    const [
-      sidesModule,
-      commandersModule,
-      weaponsModule,
-      strategyModule,
-      tacticsModule,
-      campaignsModule,
-    ] = await Promise.allSettled([
-      import(`./eras/${eraSlug}/${conflictSlug}/sides.ts`),
-      import(`./eras/${eraSlug}/${conflictSlug}/commanders.ts`),
-      import(`./eras/${eraSlug}/${conflictSlug}/weaponTech.ts`),
-      import(`./eras/${eraSlug}/${conflictSlug}/strategy.ts`),
-      import(`./eras/${eraSlug}/${conflictSlug}/tactics.ts`),
-      import(`./eras/${eraSlug}/${conflictSlug}/campaigns.ts`),
-    ]);
+    if (!conflict) {
+      console.error(`Conflict not found: ${eraSlug}/${conflictSlug}`);
+      return null;
+    }
 
-    // Get the raw data arrays
+    // Load optional data modules for this specific conflict
+    const [sidesModule, commandersModule, theatersModule, weaponTechModule] =
+      await Promise.allSettled([
+        import(`./eras/${eraSlug}/${conflictSlug}/sides`),
+        import(`./eras/${eraSlug}/${conflictSlug}/commanders`),
+        import(`./eras/${eraSlug}/${conflictSlug}/theaters`),
+        import(`./eras/${eraSlug}/${conflictSlug}/weapon-tech`),
+      ]);
+
     const allSides =
       sidesModule.status === "fulfilled" ? sidesModule.value.sides || [] : [];
     const allCommanders =
       commandersModule.status === "fulfilled"
         ? commandersModule.value.commanders || []
         : [];
+    const allTheaters =
+      theatersModule.status === "fulfilled"
+        ? theatersModule.value.theaters || []
+        : [];
+    const allWeaponTech =
+      weaponTechModule.status === "fulfilled"
+        ? weaponTechModule.value.weaponTech || []
+        : [];
 
-    // Resolve side slugs to actual Side objects and match commanders
+    // Resolve side slugs to actual Side objects with full commander data
     const resolvedSides = conflict.sides
       ? conflict.sides
           .map((sideSlug: string) => {
             const side = allSides.find((s: any) => s.slug === sideSlug);
             if (!side) return null;
 
-            // Resolve commander slugs to actual Commander objects
             const resolvedCommanders = side.commanders
               ? side.commanders
-                  .map((commanderSlug: string) =>
-                    allCommanders.find((c: any) => c.slug === commanderSlug)
-                  )
+                  .map((commanderSlug: string) => {
+                    const commander = allCommanders.find(
+                      (c: any) => c.slug === commanderSlug
+                    );
+                    return commander || null;
+                  })
                   .filter(Boolean)
               : [];
 
@@ -282,75 +286,35 @@ export async function getConflictWithAllData(
           .filter(Boolean)
       : [];
 
+    // Resolve theater slugs
     const resolvedTheaters = conflict.theaters
-      ? await Promise.all(
-          conflict.theaters.map(async (theaterSlug: string) => {
-            try {
-              const theaterModule = await import(
-                `./eras/${eraSlug}/${conflictSlug}/${theaterSlug}/${theaterSlug}.ts`
-              );
-              return (
-                theaterModule.default ||
-                theaterModule[Object.keys(theaterModule)[0]]
-              );
-            } catch (error) {
-              console.error(
-                `Failed to load theater ${theaterSlug} for ${conflictSlug}:`,
-                error
-              );
-              return null;
-            }
+      ? conflict.theaters
+          .map((theaterSlug: string) => {
+            const theater = allTheaters.find(
+              (t: any) => t.slug === theaterSlug
+            );
+            return theater || null;
           })
-        ).then((theaters) => theaters.filter(Boolean))
+          .filter(Boolean)
       : [];
 
-      const resolvedWeaponTech = conflict.weaponTech
-        ? await Promise.all(
-            conflict.weaponTech.map(async (weaponTechSlug: string) => {
-              try {
-                const weaponTechModule = await import(
-                  `./eras/${eraSlug}/${conflictSlug}/${weaponTechSlug}.ts`
-                );
-                return (
-                  weaponTechModule.default ||
-                  weaponTechModule[Object.keys(weaponTechModule)[0]]
-                );
-              } catch (error) {
-                console.error(
-                  `Failed to load theater ${weaponTechSlug} for ${conflictSlug}:`,
-                  error
-                );
-                return null;
-              }
-            })
-          ).then((weaponTech) => weaponTech.filter(Boolean))
-        : [];
+    // Resolve weapon tech slugs
+    const resolvedWeaponTech = conflict.weaponTech
+      ? conflict.weaponTech
+          .map((weaponSlug: string) => {
+            const weapon = allWeaponTech.find(
+              (w: any) => w.slug === weaponSlug
+            );
+            return weapon || null;
+          })
+          .filter(Boolean)
+      : [];
 
     return {
       ...conflict,
       sides: resolvedSides,
       theaters: resolvedTheaters,
-      weaponTech: resolvedWeaponTech, // Now returning full Theater objects instead of slugs
-      commanders:
-        commandersModule.status === "fulfilled"
-          ? commandersModule.value.commanders || []
-          : [],
-      weapons:
-        weaponsModule.status === "fulfilled"
-          ? weaponsModule.value.weapons || []
-          : [],
-      strategy:
-        strategyModule.status === "fulfilled"
-          ? strategyModule.value.strategy || []
-          : [],
-      tactics:
-        tacticsModule.status === "fulfilled"
-          ? tacticsModule.value.tactics || []
-          : [],
-      campaigns:
-        campaignsModule.status === "fulfilled"
-          ? campaignsModule.value.campaigns || []
-          : [],
+      weaponTech: resolvedWeaponTech,
     };
   } catch (error) {
     console.error(
@@ -369,7 +333,7 @@ export async function getTheaterWithAllData(
 ) {
   try {
     const theaterModule = await import(
-      `./eras/${eraSlug}/${conflictSlug}/${theaterSlug}/${theaterSlug}.ts`
+      `./eras/${eraSlug}/${conflictSlug}/${theaterSlug}/${theaterSlug}`
     );
     const theater =
       theaterModule.default || theaterModule[Object.keys(theaterModule)[0]];
@@ -382,11 +346,11 @@ export async function getTheaterWithAllData(
       strategyModule,
       tacticsModule,
     ] = await Promise.allSettled([
-      import(`./eras/${eraSlug}/${conflictSlug}/${theaterSlug}/sides.ts`),
-      import(`./eras/${eraSlug}/${conflictSlug}/${theaterSlug}/commanders.ts`),
-      import(`./eras/${eraSlug}/${conflictSlug}/${theaterSlug}/weapons.ts`),
-      import(`./eras/${eraSlug}/${conflictSlug}/${theaterSlug}/strategy.ts`),
-      import(`./eras/${eraSlug}/${conflictSlug}/${theaterSlug}/tactics.ts`),
+      import(`./eras/${eraSlug}/${conflictSlug}/${theaterSlug}/sides`),
+      import(`./eras/${eraSlug}/${conflictSlug}/${theaterSlug}/commanders`),
+      import(`./eras/${eraSlug}/${conflictSlug}/${theaterSlug}/weapons`),
+      import(`./eras/${eraSlug}/${conflictSlug}/${theaterSlug}/strategy`),
+      import(`./eras/${eraSlug}/${conflictSlug}/${theaterSlug}/tactics`),
     ]);
 
     return {
@@ -435,7 +399,7 @@ async function getConflictSlugsForEra(eraSlug: string): Promise<string[]> {
       "franco-prussian-war",
     ],
     "total-war": ["first-world-war", "second-world-war"],
-    "post-war": ["korean-war", "vietnam-war", "falklands-war", "gulf-war", ""],
+    "post-war": ["korean-war", "vietnam-war", "falklands-war", "gulf-war"],
   };
   return conflictMap[eraSlug] || [];
 }

@@ -87,7 +87,7 @@ export default async function ConflictPage({
 
         <section className="mb-8">
           <h2 className="text-2xl font-semibold mb-4">
-            Key Campaigns & Battles{" "}
+            Key Campaigns & Battles
           </h2>
           <div className="grid gap-6">
             <CardGrid>
@@ -107,9 +107,7 @@ export default async function ConflictPage({
         </section>
 
         <section className="mb-8">
-          <h2 className="text-2xl font-semibold mb-4">
-            Important Weapon Tech{" "}
-          </h2>
+          <h2 className="text-2xl font-semibold mb-4">Important Weapon Tech</h2>
           <div className="grid gap-6">
             <CardGrid>
               {conflictData.weaponTech.map(
