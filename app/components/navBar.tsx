@@ -21,6 +21,24 @@ export function NavBar() {
             Eras
           </Link>
           <Link
+            href="/search"
+            className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+          >
+            Search
+          </Link>
+          <Link
+            href="/analytics"
+            className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+          >
+            Analytics
+          </Link>
+          <Link
+            href="/network"
+            className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+          >
+            Network
+          </Link>
+          <Link
             href="#about"
             className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
           >

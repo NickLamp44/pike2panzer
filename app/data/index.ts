@@ -418,7 +418,12 @@ async function getTheaterSlugsForConflict(
   return theaterMap[eraSlug]?.[conflictSlug] || [];
 }
 
-// Export allData object for client-side data access
+// Export allData as a namespace containing static data
 export const allData = {
   eras,
+  getEraBySlug,
+  getConflictsForEra,
+  getEraWithConflicts,
+  getConflictWithAllData,
+  getTheaterWithAllData,
 };

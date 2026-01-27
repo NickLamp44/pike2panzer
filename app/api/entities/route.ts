@@ -4,28 +4,33 @@ import { dataAggregator } from '@/lib/dataAggregator';
 export async function GET(request: NextRequest) {
   try {
     const searchParams = request.nextUrl.searchParams;
-    const query = searchParams.get('q');
     const type = searchParams.get('type');
-    const era = searchParams.get('era');
-    const conflict = searchParams.get('conflict');
 
-    if (!query) {
+    if (!type) {
       return NextResponse.json(
-        { error: 'Query parameter (q) is required' },
+        { error: 'Type parameter is required' },
         { status: 400 }
       );
     }
 
-    const results = dataAggregator.search(query, { type: type || undefined, era: era || undefined, conflict: conflict || undefined });
+    const validTypes = ['commander', 'battle', 'campaign', 'weapon', 'tactic', 'strategy', 'side', 'era', 'conflict'];
+    if (!validTypes.includes(type)) {
+      return NextResponse.json(
+        { error: `Invalid type. Must be one of: ${validTypes.join(', ')}` },
+        { status: 400 }
+      );
+    }
+
+    const results = dataAggregator.getByType(type as any);
 
     return NextResponse.json({
       success: true,
-      query,
+      type,
       count: results.length,
       results,
     });
   } catch (error) {
-    console.error('Search API error:', error);
+    console.error('Entities API error:', error);
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }

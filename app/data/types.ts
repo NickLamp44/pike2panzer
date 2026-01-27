@@ -122,6 +122,9 @@ export interface MajorBattle {
   weapons?: string[]; // slug array for specific weapons widely used during the Battle
 }
 
+// Alias for compatibility
+export type Battle = MajorBattle;
+
 export interface Side {
   name: string;
   color: string;
