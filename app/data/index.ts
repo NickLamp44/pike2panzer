@@ -417,3 +417,8 @@ async function getTheaterSlugsForConflict(
   };
   return theaterMap[eraSlug]?.[conflictSlug] || [];
 }
+
+// Export allData object for client-side data access
+export const allData = {
+  eras,
+};
