@@ -16,6 +16,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Pike to Panzer",
   description: "A complete Military history site",
+    generator: 'v0.app'
 };
 
 export default function RootLayout({

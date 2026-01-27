@@ -1,4 +1,3 @@
-
 import type { Award } from "../data/types";
 
 

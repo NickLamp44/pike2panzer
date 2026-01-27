@@ -1,4 +1,3 @@
-
 export const majorBattles: MajorBattle[] = [
   {
     name: "Battle of the Frontiers",

@@ -1,4 +1,3 @@
-
 import type { WeaponTech } from "../data/types";
 import Image from "next/image";
 
